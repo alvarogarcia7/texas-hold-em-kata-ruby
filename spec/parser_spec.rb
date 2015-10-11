@@ -21,3 +21,16 @@ RSpec.describe "#parser" do
     ]
   end
 end
+
+RSpec.describe "card reader" do
+  it "should parse a hand" do
+    expect(Reader.new("4s Kd 2h Ts 5h Jc").convert).to eq 
+    [Hand.new(
+      Card.new("4s"),
+      Card.new("Kd"),
+      Card.new("2h"),
+      Card.new("Ts"),
+      Card.new("5h"),
+      Card.new("Jc"))]
+  end
+end
