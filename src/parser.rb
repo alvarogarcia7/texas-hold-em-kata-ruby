@@ -20,7 +20,7 @@ class Reader
 
   def convert
     cards = @representation.split(' ').map { |card| Card.new(card) }
-    return Hand.new(cards)
+    Hand.new(cards)
   end
 end
 
@@ -77,7 +77,7 @@ class Rule
   end
 
   def apply hand
-    return { :used => hand, :kicker => Hand::EMPTY}
+    { :used => hand, :kicker => Hand::EMPTY}
   end
 
 end
