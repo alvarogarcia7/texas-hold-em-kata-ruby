@@ -43,14 +43,14 @@ RSpec.describe "Cards" do
     expception = assert_raise(CardError) do
       Card.new("1s")
     end
-    assert_match(/1 is not a valid number/, expception.message)
+    assert_match(/'1' is not a valid number/, expception.message)
   end
 
   it "should detect an invalid suit" do
     expception = assert_raise(CardError) do
       Card.new("4a")
     end
-    assert_match(/a is not a valid suit/, expception.message)
+    assert_match(/'a' is not a valid suit/, expception.message)
   end
 end
 
