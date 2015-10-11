@@ -45,3 +45,40 @@ vals_.include?("1")
 "a2"[1]
 "a2"[0]
 "a1".split " "
+load "src/parser.rb"
+Card.new("4s")
+Reader.new("4s").convert
+Reader.new("4s").convert.inspect
+Reader.new("4s").convert[0]
+Reader.new("4s").convert
+hand = Reader.new("4s").convert
+hand.cards
+hand.cards[0]
+load "src/parser.rb"
+hand = Reader.new("4s").convert
+hand.cards[0]
+hand.cards
+load "src/parser.rb"
+Hand.new(Card.new("4s"))
+Hand.new(Card.new("4s")).inspect
+Card.new("4s")
+[Card.new("4s")]
+Hand.new([Card.new("4s")]).inspect
+Hand.new([Card.new("4s")]).to_s
+Hand.new([Card.new("4s")])
+[Card.new("4s")]
+[Card.new("4s")].inspect
+Card.new("4s").inspect
+Hand.new([Card.new("4s")]).to_s
+Reader.new("4s").convert
+Reader.new("4s").convert.inspect
+Reader.new("4s").convert
+Reader.new("4s").convert[0]
+Reader.new("4s").convert
+Reader.new("4s")
+{ :a => Reader.new("4s").convert}
+{ :a => Reader.new("4s").convert, :kicker => nil}
+{ :a => Reader.new("4s").convert, :kicker => nil} == true
+{ :a => Reader.new("4s").convert, :kicker => nil}.inspect
+{ :a => Reader.new("4s").convert, :kicker => nil}[:a]
+{ :a => Reader.new("4s").convert, :kicker => nil}[:a].inspect

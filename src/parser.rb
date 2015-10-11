@@ -25,9 +25,10 @@ class Reader
 end
 
 class Hand
+  EMPTY = nil
   attr_reader :cards
   def initialize *args
-    @cards = args
+    @cards = *args
   end
 
   def ==(another)
@@ -36,6 +37,10 @@ class Hand
 
   def inspect
     cards.map { |x| x.inspect }
+  end
+
+  def apply rule
+    rule.apply self
   end
 end
 
@@ -59,6 +64,17 @@ class Card
   def inspect
     value
   end
+end
+
+class Rule
+  def initialize &block
+    @block = block
+  end
+
+  def apply hand
+    return { :used => hand, :kicker => Hand::EMPTY}
+  end
+
 end
 
 class CardError < StandardError
