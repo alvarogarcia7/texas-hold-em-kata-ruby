@@ -42,6 +42,10 @@ class Hand
   def apply rule
     rule.apply self
   end
+
+  def self.from representation
+    Reader.new(representation).convert
+  end
 end
 
 class Card

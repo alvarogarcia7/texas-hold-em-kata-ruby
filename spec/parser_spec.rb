@@ -67,7 +67,7 @@ end
 
 RSpec.describe "Hand - Creation of this class" do
   it "should create from a string" do
-    expect(Hand.from("4s 5s").to eq Hand.new([Card.new("4s"), Card.new("5s")]))
+    expect(Hand.from("4s 5s")).to eq Hand.new([Card.new("4s"), Card.new("5s")])
   end
 end
 
