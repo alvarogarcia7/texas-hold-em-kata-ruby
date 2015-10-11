@@ -4,9 +4,9 @@ class Parser
   end
 
   def lines
-  	lines = 0
+  	lines = []
     File.open(@file, "r") {
- 	  |io| io.map { |line| lines += 1 }
+ 	  |io| io.map { |line| lines << line.strip }
  	}
     lines
   end

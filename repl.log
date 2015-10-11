@@ -1,0 +1,25 @@
+"a".tr
+"a".tr_s
+ri
+:help "a".to_s
+:help to_s
+:help String::to_s
+:help String.to_s
+:help
+help
+ri "a".to_s
+ri String.to_s
+ri String:to_s
+ri String::to_s
+ri
+ri NilClass
+ri String
+puts "a"
+"a".tr
+"a".tr("a2", "b"
+  "a".tr("a2", "b")
+"a".tr("a2", "b")
+"a".tr("\s", "")
+"a   ".tr("\s", "")
+"a   ".strip
+"a    \n".strip
