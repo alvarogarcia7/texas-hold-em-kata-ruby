@@ -107,9 +107,8 @@ class Rule
   HIGH_CARD = Rule.new(
       lambda { |cards|
         sorted_cards = cards.map { |x| [x, Card::VALID_VALUES.index(x.face)]}.sort_by { |f| f[1]}.map { |x| x[0]}
-        sorted_cards.map { |x| puts x.value}
-        kicker = sorted_cards[1]
         used = sorted_cards[0]
+        kicker = sorted_cards[1]
         if kicker.nil? then
           kicker = Hand::EMPTY
         else
