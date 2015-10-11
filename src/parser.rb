@@ -37,11 +37,14 @@ end
 
 class Card
   VALID_VALUES = "AKQJT98765432".split("")
+  VALID_SUITES = "cdhs".split("")
   attr_reader :value
 
   def initialize value
     facial_value = value[0]
+    suit = value[1]
     raise CardError, "#{facial_value} is not a valid number" if not VALID_VALUES.include?(facial_value)
+    raise CardError, "#{suit} is not a valid suit" if not VALID_SUITES.include?(suit)
     @value = value
   end
 
