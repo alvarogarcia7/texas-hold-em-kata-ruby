@@ -82,6 +82,16 @@ RSpec.describe 'Rule application' do
   end
 end
 
+RSpec.describe "EmptyHand#==" do
+  it "should find it equal to itself" do
+    expect(EmptyHand.new).to eq(EmptyHand.new)
+  end
+
+  it "should not be equal to a Hand" do
+    expect(EmptyHand.new).to_not eq(Hand.new([]))
+  end
+end
+
 RSpec.describe 'Hand - Creation of this class' do
   it 'should create from a string' do
     expect(Hand.from('4s 5s')).to eq Hand.new([Card.new('4s'), Card.new('5s')])

@@ -308,3 +308,33 @@ x
 load "src/parser.rb"
 nil == nil
 nil == Object.class
+load "src/parser.rb"
+EmptyHand.new
+EmptyHand.new.class
+EmptyHand.new.class.is_a?(EmptyHand.class)
+EmptyHand.new.class.is_a?(Object.class)
+EmptyHand.new.class.is_a?(Hand.class)
+Hand.new.class.is_a?(EmptyHand.class)
+Hand.new([]).class.is_a?(EmptyHand.class)
+Hand.new([nil]).class.is_a?(EmptyHand.class)
+Object.class.is_a?(EmptyHand.class)
+ri is_a?
+Hand.new([nil]).class.kind_of?(EmptyHand.class)
+Hand.new([nil]).class.instance_of?(EmptyHand.class)
+EmptyHand==EmptyHand
+EmptyHand.new()==EmptyHand.new()
+EmptyHand.new==EmptyHand.new
+load "src/parser.rb"
+EmptyHand.new==EmptyHand.new
+load "src/parser.rb"
+EmptyHand.new==EmptyHand.new
+EmptyHand.new==Hand::EMPTY
+EmptyHand.new.is_a?(EmptyHand)
+EmptyHand.new.is_a?(EmptyHand.class)
+EmptyHand.new.is_a?(EmptyHand)
+EmptyHand.new.is_a?(HandHand)
+EmptyHand.new.is_a?(Hand)
+EmptyHand.new.is_a?(Card)
+load "src/parser.rb"
+EmptyHand.new == EmptyHand.new
+EmptyHand.new == Hand.new([])

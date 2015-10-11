@@ -48,12 +48,14 @@ class Hand
 end
 
 class EmptyHand < Hand
+  attr_accessor :value
   def initialize
     @value = []
   end
 
   def == other
-    true
+    return @value == other.value if other.is_a?(EmptyHand)
+    false
   end
 end
 
