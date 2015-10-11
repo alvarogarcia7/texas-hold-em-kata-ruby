@@ -5,7 +5,7 @@ class Parser
 
   def lines
   	lines = []
-    File.open(@file, "r") {
+    File.open(@file, 'r') {
  	    |io| io.map { |line| lines << line.strip }
  	  }
     lines
@@ -19,7 +19,7 @@ class Reader
   end
 
   def convert
-    cards = @representation.split(" ").map { |card| Card.new(card) }
+    cards = @representation.split(' ').map { |card| Card.new(card) }
     return Hand.new(cards)
   end
 end
@@ -49,8 +49,8 @@ class Hand
 end
 
 class Card
-  VALID_VALUES = "AKQJT98765432".split("")
-  VALID_SUITES = "cdhs".split("")
+  VALID_VALUES = 'AKQJT98765432'.split('')
+  VALID_SUITES = 'cdhs'.split('')
   attr_reader :value
 
   def initialize value
