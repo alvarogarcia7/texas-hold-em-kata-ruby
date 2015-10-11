@@ -267,12 +267,6 @@ Card::VALID_VALUES.each_with_index do |x, i| if vals.contains?(x) then i else ni
 Card::VALID_VALUES.each_with_index do |x, i| if vals.contains?(x) then [i,x] else nil end
 vals.include? Card::VALID_VALUES[0]
 vals.include? Card::VALID_VALUES[1]
-vals.include? Card::VALID_VALUES[2]
-vals.include? Card::VALID_VALUES[3]
-vals.include? Card::VALID_VALUES[4]
-vals.include? Card::VALID_VALUES[5]
-vals.include? Card::VALID_VALUES[6]
-vals.include? Card::VALID_VALUES[7]
 Card::VALID_VALUES.map |x| vals.include? x end
 Card::VALID_VALUES.map { |x| vals.include? x}
 Card::VALID_VALUES.map { |x| [vals.include? x, x]}
@@ -296,26 +290,6 @@ load "src/parser.rb"
 Rule::HIGH_CARD.apply(Hand.from "4s 5s")
 load "src/parser.rb"
 Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
 Reader.new("4s 2s 3s").convert
 Reader.new("4s 2s 3s").convert.cards
 Reader.new("4s 2s 3s").convert.cards[0].class
@@ -325,20 +299,11 @@ load "src/parser.rb"
 Rule::HIGH_CARD.apply(Hand.from "4s 5s")
 load "src/parser.rb"
 Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
 Card::VALID_VALUES.index "A"
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
-load "src/parser.rb"
-Rule::HIGH_CARD.apply(Hand.from "4s 5s")
 load "src/parser.rb"
 Rule::HIGH_CARD.apply(Hand.from "4s 5s")
 ["A", "A", "B"].delete "A"
 x = ["A", "A", "B"]; x.delete "A"
-xx
 x
 load "src/parser.rb"
 nil == nil
