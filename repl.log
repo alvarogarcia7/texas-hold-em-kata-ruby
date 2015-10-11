@@ -96,3 +96,7 @@ Reader.new("4s 2s 3s").convert.cards
 load "src/parser.rb"
 Reader.new("4s 2s 3s").convert.cards
 Reader.new("4s 2s 3s").convert
+Hand.new(Card.new("4s"), Card.new("5s"))
+Hand.new([Card.new("4s"), Card.new("5s")])
+Hand.new([Card.new("4s"), Card.new("5s")]).cards
+Hand.from("4s 5s")
