@@ -23,3 +23,14 @@ puts "a"
 "a   ".tr("\s", "")
 "a   ".strip
 "a    \n".strip
+"a b".split " "
+load parser.rb
+load "parser.rb"
+.pwd
+load "src/parser.rb"
+Card.new("1a")
+Card.new("1a")==Card.new("1a")
+Card.new("1a")===Card.new("1a")
+load "src/parser.rb"
+Card.new("1a")===Card.new("1a")
+Card.new("1a")==Card.new("1a")
