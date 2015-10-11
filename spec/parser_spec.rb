@@ -64,6 +64,12 @@ RSpec.describe "Hand - Rule application" do
   end
 end
 
+RSpec.describe "Rule application" do
+  it "should apply the higher card rule" do
+    expect(Rule::HIGH_CARD.apply(Hand.from("4s"))).to eq ({ :used => Hand.from("4s"), :kicker => Hand::EMPTY})
+  end
+end
+
 RSpec.describe "Hand - Creation of this class" do
   it "should create from a string" do
     expect(Hand.from("4s 5s")).to eq Hand.new([Card.new("4s"), Card.new("5s")])
