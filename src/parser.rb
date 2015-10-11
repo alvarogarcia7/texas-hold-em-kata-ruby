@@ -77,7 +77,7 @@ class Rule
   end
 
   def apply hand
-    { :used => hand, :kicker => Hand::EMPTY}
+    {used: hand, kicker: Hand::EMPTY}
   end
 
 end
