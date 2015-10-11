@@ -1,5 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../src/parser.rb')
 
+RSpec.describe "Canary test" do
+  it "should always pass" do
+    expect(true).to eq true
+  end
+end
+
 RSpec.describe "#parser" do
   it "should read the file" do
   	read_values = Parser.new("samples/hand1.hd")
