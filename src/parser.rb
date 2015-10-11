@@ -3,10 +3,6 @@ class Parser
     @file = file
   end
 
-  def read
-  	this
-  end
-
   def lines
     8
   end
