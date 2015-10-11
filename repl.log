@@ -100,3 +100,246 @@ Hand.new(Card.new("4s"), Card.new("5s"))
 Hand.new([Card.new("4s"), Card.new("5s")])
 Hand.new([Card.new("4s"), Card.new("5s")]).cards
 Hand.from("4s 5s")
+load "src/parser.rb"
+Hand.from('4s 5s')
+Hand.from('4s 5s').cards
+load "src/parser.rb"
+rule = Rule::HIGH_CARD
+initial_hand = Hand.from('4s 5s')
+expected_result = {used: Hand.from('5s'), kicker: Hand.from('4s')}
+rule.apply initial_hand
+expected_result
+expected_result[:used]
+expected_result[:used].cards
+expected_result[:kicker].cards
+expected_result[:kicker]
+expected_result[:kicker].to_s
+expected_result[:kicker].inspect
+expected_result[:kicker]
+k=expected_result[:kicker]
+k.display
+def a do yield end
+def a do yield end;
+def a do; yield; end
+def a; yield; end
+a
+a { puts 1 }
+def a; puts "a"; end
+a { puts 1 }
+def a &b; puts "a"; end
+a { puts 1 }
+def a &b; yield b; end
+a { puts 1 }
+def a b; yield b; end
+a { puts 1 }
+def a &b; yield b; end
+load "src/parser.rb"
+Rule::HIGH_CARD
+r = Rule::HIGH_CARD
+r.apply {puts 1}
+r.apply 1 {puts 1}
+r.apply 1, {puts 1}
+r.apply 1, { puts 1 }
+r.apply 1
+load "src/parser.rb"
+Rule::HIGH_CARD
+Rule::HIGH_CARD.block
+Rule::HIGH_CARD.block.inspect
+Rule::HIGH_CARD.block.display
+load "src/parser.rb"
+Rule::HIGH_CARD
+Rule::HIGH_CARD.block
+load "src/parser.rb"
+Rule::HIGH_CARD.block 1
+Rule::HIGH_CARD.block
+yield Rule::HIGH_CARD.block 1
+def a c, &b; yield b, c; end
+a {puts 1}
+a 2, {puts 1}
+a { |x| puts x }
+a 2, { |x| puts x }
+a(2, { |x| puts x })
+a(2, { |x| puts x; })
+a(2, { |x| puts x })
+def method_with_block_arguments
+  yield("Jim")
+end
+load "src/parser.rb"
+Rule.new.apply [0,1], {|x| puts x}
+Rule.new.apply [0,1], do |x| puts x end
+Rule.new.apply [0,1], do { |x| puts x } end
+Rule.new.apply [0,1], do |x| puts x  end
+r = Rule.new
+r.apply 1, do |x| puts x end
+r.apply 1, (do |x| puts x end)
+r.apply 1, (do |x|  end)
+r.apply 1, (do |x| x end)
+r.apply 1, (do |x| x+1 end)
+(do |x| x+1 end)
+do |x| x+1 end
+def x x+1 end
+def x x+1; end
+def x; x+1; end
+[1,2,3].collect! x
+[1,2,3].collect! do |x| x+1 end
+a= do |x| x+1 end
+method(:a)
+method(:a).class
+method(:x)
+method(:x).class
+[1,2,3].collect! method(:x)
+def x x; x+1; end
+[1,2,3].collect! method(:x)
+def x y; y+1; end
+[1,2,3].collect! method(:x)
+[1,2,3].collect! do |n| method(:x).call(n) end
+load "src/parser.rb"
+r.apply [0,1], do |x| x[1] end
+r.apply [0,1], (do |x|; x[1]; end)
+load "src/parser.rb"
+r.apply [0,1], seccond
+r.apply [0,1], do |x| seccond(x) end
+r.apply [0,1], do |x| method(:seccond).call(x) end
+r.apply([0,1], do |x| method(:seccond).call(x) end)
+s
+s = method(:seccond)
+r.apply([0,1], do |x| s.call(x) end)
+s == s
+def x y; y+1; end
+s1 = def x y; y+1; end
+s2 = def x y; y+1; end
+s1 == s2
+s2 = def x y; y+2; end
+s1 == s2
+s2 = def z y; y+2; end
+s1 == s2
+s1.inspect
+s1
+s1.call(1)
+x
+x(1)
+z(1)
+{ |x| x[1] }.call [0,1]
+({ |x| x[1] }).call [0,1]
+({ |x| x[1] }).call([0,1])
+)
+({ |x| x[1] }).call([0,1])
+(do |x| x[1] end).call([0,1])
+(do |x| x[1] end)
+(do |x|; x[1]; end)
+(do |x| x[1]; end)
+(do |x| x[1]; end;)
+def h x; x[1]; end
+h [1,2]
+def x; y[1]; end
+x [1,2]
+lambda |x| x[1] end
+lambda |x| x[1]; end
+lambda |x|; x[1]; end
+lambda {|x| x[1]}
+lambda {|x| x[1]}.call [0,1]
+load "src/parser.rb"
+Rule::HIGH_CARD.apply Hand.from "4a"
+Rule::HIGH_CARD.apply Hand.from "4s"
+Rule::HIGH_CARD.apply( Hand.from "4s")
+Hand.from "4s"
+Hand.from "4s".cards
+(Hand.from "4s").cards
+load "src/parser.rb"
+Rule::HIGH_CARD.apply( Hand.from "4s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply( Hand.from "4s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply( Hand.from "4s")
+Rule::HIGH_CARD.apply( Hand.from "4s 5s")
+Hand.from "4s 5s"
+Hand.from "4s 5s".cards
+(Hand.from "4s 5s").card
+(Hand.from "4s 5s").cards
+Card::FACES
+Card::VALID_VALUES
+Card::VALID_VALUES.map
+vals = ["4", "5"]
+Card::VALID_VALUES.iterate_with_index
+Card::VALID_VALUES.each_with_index
+Card::VALID_VALUES.each_with_index |x, i| if vals.contains?(x) then i else nil end
+Card::VALID_VALUES.each_with_index do |x, i| if vals.contains?(x) then i else nil end
+Card::VALID_VALUES.each_with_index do |x, i| if vals.contains?(x) then [i,x] else nil end
+vals.include? Card::VALID_VALUES[0]
+vals.include? Card::VALID_VALUES[1]
+vals.include? Card::VALID_VALUES[2]
+vals.include? Card::VALID_VALUES[3]
+vals.include? Card::VALID_VALUES[4]
+vals.include? Card::VALID_VALUES[5]
+vals.include? Card::VALID_VALUES[6]
+vals.include? Card::VALID_VALUES[7]
+Card::VALID_VALUES.map |x| vals.include? x end
+Card::VALID_VALUES.map { |x| vals.include? x}
+Card::VALID_VALUES.map { |x| [vals.include? x, x]}
+Card::VALID_VALUES.map { |x| return [vals.include? x, x]}
+Card::VALID_VALUES.map { |x| return [vals.include? x, x] }
+Card::VALID_VALUES.map { |x| return vals.include? x, x }
+Card::VALID_VALUES.map { |x| [[vals.include? x), x] }
+Card::VALID_VALUES.map { |x| [(vals.include? x), x] }
+Card::VALID_VALUES.map { |x| [(vals.include? x), x] }.select {|x| x[0]==true}
+load "src/parser.rb"
+Rule::HIGH_CARD.apply( Hand.from "4s 5s")
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+Hand.from "4s 5s"
+Hand.from "4s 5s".cards
+(Hand.from "4s 5s").card
+(Hand.from "4s 5s").cards
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+Reader.new("4s 2s 3s").convert
+Reader.new("4s 2s 3s").convert.cards
+Reader.new("4s 2s 3s").convert.cards[0].class
+Reader.new("4s 2s 3s").convert.cards[0].face
+Reader.new("4s 2s 3s").convert.cards[0].face.class
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+Card::VALID_VALUES.index "A"
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+load "src/parser.rb"
+Rule::HIGH_CARD.apply(Hand.from "4s 5s")
+["A", "A", "B"].delete "A"
+x = ["A", "A", "B"]; x.delete "A"
+xx
+x
+load "src/parser.rb"
+nil == nil
+nil == Object.class

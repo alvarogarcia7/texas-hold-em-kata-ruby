@@ -60,13 +60,25 @@ RSpec.describe 'Hand - Rule application' do
     hand = Reader.new('4s').convert
     expected_result = { :used => hand, :kicker => Hand::EMPTY}
     actual_result = hand.apply(Rule::HIGH_CARD)
-    assert(expected_result==actual_result)
+    expect(actual_result).to eq(expected_result)
   end
 end
 
 RSpec.describe 'Rule application' do
-  it 'should apply the higher card rule' do
-    expect(Rule::HIGH_CARD.apply(Hand.from('5s'))).to eq ({ :used => Hand.from('5s'), :kicker => Hand::EMPTY})
+  it 'should apply the higher card rule to a single card' do
+    actual = Rule::HIGH_CARD.apply(Hand.from('5s'))
+    expected = {:used => Hand.from('5s'), :kicker => Hand::EMPTY}
+    expect(actual).to eq (expected)
+  end
+
+  it 'should apply the higher card rule to two cards' do
+    rule = Rule::HIGH_CARD
+    initial_hand = Hand.from('4s 5s')
+    expected_result = {used: Hand.from('5s'), kicker: Hand.from('4s')}
+    actual_result = rule.apply(initial_hand)
+    puts expected_result
+    puts actual_result
+    assert(expected_result==actual_result)
   end
 end
 
@@ -103,7 +115,7 @@ def assert_match(pattern, actual, msg=nil)
 end
 
 def flunk(msg)
-  raise FailedAssertionError, msg
+  raise StandardError, msg
 end
 
 def assert(condition, msg=nil)
