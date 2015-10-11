@@ -71,6 +71,7 @@ class Card
 end
 
 class Rule
+  HIGH_CARD = Rule.new{ |cards| return cards[0] }
   def initialize &block
     @block = block
   end
@@ -80,6 +81,7 @@ class Rule
   end
 
 end
+
 
 class CardError < StandardError
 end

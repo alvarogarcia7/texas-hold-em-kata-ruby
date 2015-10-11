@@ -54,13 +54,12 @@ RSpec.describe "Cards" do
   end
 end
 
-HIGH_CARD = Rule.new{ |cards| return cards[0] }
 
 RSpec.describe "Hand - Rule application" do
   it "should apply the high card" do
     hand = Reader.new("4s").convert
     expected_result = { :used => hand, :kicker => Hand::EMPTY}
-    actual_result = hand.apply(HIGH_CARD)
+    actual_result = hand.apply(Rule::HIGH_CARD)
     assert(expected_result==actual_result)
   end
 end
