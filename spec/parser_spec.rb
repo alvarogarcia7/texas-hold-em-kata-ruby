@@ -34,3 +34,9 @@ RSpec.describe "card reader" do
       Card.new("Jc")])
   end
 end
+
+RSpec.describe "Cards" do
+  it "should detect a valid card" do
+    expect(Card.new("4s").value).to eq "4s"
+  end
+end
