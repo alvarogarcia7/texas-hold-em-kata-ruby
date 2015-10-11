@@ -54,6 +54,13 @@ RSpec.describe "Cards" do
   end
 end
 
+RSpec.describe "Hand - Rule application" do
+  it "should apply the high card" do
+    expect(Reader.new("4a").apply(HIGH_CARD)).to eq({ :used => Hand.new([Card.new("4a")]), :kicker => Hand.EMPTY})
+  end
+end
+
+
 RSpec.describe "End to End" do
   it "should parse all hands in a file" do
     lines = Parser.new(File.dirname(__FILE__)+"/samples/hand1.hd").lines 
