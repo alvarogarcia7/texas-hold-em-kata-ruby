@@ -82,3 +82,17 @@ Reader.new("4s")
 { :a => Reader.new("4s").convert, :kicker => nil}.inspect
 { :a => Reader.new("4s").convert, :kicker => nil}[:a]
 { :a => Reader.new("4s").convert, :kicker => nil}[:a].inspect
+load "src/parser.rb"
+Reader.new("4s").convert
+Reader.new("4s").convert.cards
+Reader.new("4s 2s 3s").convert.cards
+load "src/parser.rb"
+Reader.new("4s 2s 3s").convert.cards
+load "src/parser.rb"
+Reader.new("4s 2s 3s").convert.cards
+load "src/parser.rb"
+Reader.new("4s 2s 3s").convert.cards"
+Reader.new("4s 2s 3s").convert.cards
+load "src/parser.rb"
+Reader.new("4s 2s 3s").convert.cards
+Reader.new("4s 2s 3s").convert

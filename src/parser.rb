@@ -27,8 +27,8 @@ end
 class Hand
   EMPTY = nil
   attr_reader :cards
-  def initialize *args
-    @cards = *args
+  def initialize args
+    @cards = args
   end
 
   def ==(another)
