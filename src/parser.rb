@@ -36,13 +36,19 @@ class Hand
 end
 
 class Card
+  VALID_VALUES = "AKQJT98765432".split("")
   attr_reader :value
 
   def initialize value
+    facial_value = value[0]
+    raise CardError, "#{facial_value} is not a valid number" if not VALID_VALUES.include?(facial_value)
     @value = value
   end
 
   def ==(another)
     self.value==another.value
   end
+end
+
+class CardError < StandardError
 end

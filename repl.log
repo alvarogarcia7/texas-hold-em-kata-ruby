@@ -34,3 +34,13 @@ Card.new("1a")===Card.new("1a")
 load "src/parser.rb"
 Card.new("1a")===Card.new("1a")
 Card.new("1a")==Card.new("1a")
+vals = "1234"
+vals.split
+vals.split("")
+vals.split("").contains?("1")
+vals.split("").items
+vals.split("")
+vals_ = ["1", "2", "3", "4"]
+vals_.include?("1")
+"a2"[1]
+"a2"[0]
