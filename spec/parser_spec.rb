@@ -77,11 +77,11 @@ RSpec.describe 'Hand - Creation of this class' do
 end
 
 RSpec.describe 'End to End' do
-  it 'should parse all hands in a file' do
+  xit 'should parse all hands in a file' do
     lines = Parser.new(File.dirname(__FILE__)+'/samples/hand1.hd').lines
     hands = lines.map { |x| Reader.new(x).convert }
-    # hands.map { |x| puts x.inspect }
-    # hands.map { |x| puts x }
+    hands.map { |x| puts x.inspect }
+    hands.map { |x| puts x }
   end
 end
 
