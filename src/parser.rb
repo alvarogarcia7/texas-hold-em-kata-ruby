@@ -33,6 +33,10 @@ class Hand
   def ==(another)
     cards==another.cards
   end
+
+  def inspect
+    cards.map { |x| x.inspect }
+  end
 end
 
 class Card
@@ -50,6 +54,10 @@ class Card
 
   def ==(another)
     self.value==another.value
+  end
+
+  def inspect
+    value
   end
 end
 

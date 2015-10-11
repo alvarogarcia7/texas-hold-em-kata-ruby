@@ -54,6 +54,13 @@ RSpec.describe "Cards" do
   end
 end
 
+RSpec.describe "End to End" do
+  it "should parse all hands in a file" do
+    lines = Parser.new(File.dirname(__FILE__)+"/samples/hand1.hd").lines 
+    hands = lines.map { |x| Reader.new(x).convert }
+    hands.map { |x| puts x.inspect }
+  end
+end
 
 
 def assert_raise(exception)
