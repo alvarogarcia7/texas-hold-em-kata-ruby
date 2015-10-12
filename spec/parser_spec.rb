@@ -100,30 +100,3 @@ RSpec.describe 'End to End' do
     hands.map { |x| puts x }
   end
 end
-
-
-def assert_raise(exception)
-  begin
-    yield
-  rescue Exception => ex
-    expected = ex.is_a?(exception)
-    assert(expected, "Exception #{exception.inspect} expected, but #{ex.inspect} was raised")
-    return ex
-  end
-  flunk "Exception #{exception.inspect} expected, but nothing raised"
-end
-
-def assert_match(pattern, actual, msg=nil)
-  msg ||= "Expected #{actual.inspect} to match #{pattern.inspect}"
-  assert pattern =~ actual, msg
-end
-
-def flunk(msg)
-  raise StandardError, msg
-end
-
-def assert(condition, msg=nil)
-  msg ||= 'Failed assertion.'
-  flunk(msg) unless condition
-  true
-end
