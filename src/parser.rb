@@ -137,7 +137,7 @@ class Rule
         if used.nil? then
           used = Hand::EMPTY
         else
-          used = Hand.new([used])
+          used = Hand.new(used)
         end
         kicker = Hand::EMPTY
         {used: used, kicker: kicker}
