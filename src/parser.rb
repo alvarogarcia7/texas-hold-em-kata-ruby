@@ -68,12 +68,14 @@ class Card
   VALID_SUITES = 'cdhs'.split('')
   attr_reader :value
 
+  def face
+    value[0]
+  end
   def initialize value
-    facial_value = value[0]
-    suit = value[1]
-    raise CardError, "'#{facial_value}' is not a valid number" unless VALID_VALUES.include?(facial_value)
-    raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
     @value = value
+    suit = value[1]
+    raise CardError, "'#{face}' is not a valid number" unless VALID_VALUES.include?(face)
+    raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
   end
 
   def ==(another)
@@ -84,9 +86,6 @@ class Card
     value
   end
 
-  def face
-    value[0]
-  end
 end
 
 
