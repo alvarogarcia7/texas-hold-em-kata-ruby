@@ -82,6 +82,12 @@ RSpec.describe 'Rule application' do
     actual = Rule::PAIR.apply(Hand.from('5d 5s'))
     expect(actual).to eq (expected)
   end
+
+  it 'should not matter about the card suits while applying the PAIR rule' do
+    expected = {:used => Hand.from('5d 5d'), :kicker => Hand::EMPTY}
+    actual = Rule::PAIR.apply(Hand.from('5d 5d'))
+    expect(actual).to eq (expected)
+  end
 end
 
 RSpec.describe "EmptyHand#==" do
