@@ -68,18 +68,18 @@ class Card
   VALID_SUITES = 'cdhs'.split('')
   attr_reader :value
 
+  def initialize value
+    @value = value
+    raise CardError, "'#{rank}' is not a valid rank" unless VALID_RANKS.include?(rank)
+    raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
+  end
+
   def rank
     value[0]
   end
 
   def suit
     value[1]
-  end
-  
-  def initialize value
-    @value = value
-    raise CardError, "'#{rank}' is not a valid rank" unless VALID_RANKS.include?(rank)
-    raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
   end
 
   def ==(another)
