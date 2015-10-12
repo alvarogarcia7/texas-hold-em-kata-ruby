@@ -72,6 +72,10 @@ RSpec.describe 'Rule application' do
   it 'should apply the pair rule to a single card' do
     expect(Rule::PAIR.apply(Hand.from('5s'))).to eq ({:used => Hand::EMPTY, :kicker => Hand::EMPTY})
   end
+
+  it 'should apply the pair rule to two cards with different ranks' do
+    expect(Rule::PAIR.apply(Hand.from('5s 4s'))).to eq ({:used => Hand::EMPTY, :kicker => Hand::EMPTY})
+  end
 end
 
 RSpec.describe "EmptyHand#==" do
