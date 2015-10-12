@@ -116,11 +116,6 @@ class Rule
         else
           kicker = Hand.new([kicker])
         end
-        # unused = sorted_cards
-        # unused.delete(kicker)
-        # unused.delete(used)
-        # unused = Hand::EMPTY if unused.size == 0
-        # unused: Hand.new([unused])
         {used: Hand.new([used]), kicker: kicker}
       })
 
