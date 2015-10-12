@@ -92,12 +92,6 @@ class Card
 
 end
 
-
-
-def seccond x
-  x[1]
-end
-
 class Rule
   attr_accessor :block
 
