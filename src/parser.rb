@@ -124,6 +124,26 @@ class Rule
         {used: Hand.new([used]), kicker: kicker}
       })
 
+  PAIR = Rule.new(
+      lambda { |cards|
+        card_frequencies = cards
+                               .group_by{|x| x.face}
+                               .values.map{|x| [x.count, x]}
+                               .select{|x| x[0]==2}
+                               .map { |x| x[1]}
+                               .map { |x| [x, Card::VALID_VALUES.index(x[1].face)]}.sort_by { |f| f[1]}.map { |x| x[0]}
+
+        used = card_frequencies[0]
+        if used.nil? then
+          used = Hand::EMPTY
+        else
+          used = Hand.new([used])
+        end
+        kicker = Hand::EMPTY
+        {used: used, kicker: kicker}
+      })
+
+
 end
 
 

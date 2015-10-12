@@ -340,3 +340,6 @@ EmptyHand.new == EmptyHand.new
 EmptyHand.new == Hand.new([])
 load "src/parser.rb"
 expect
+[3,3,4].group_by{|f| f}
+[3,3,4].group_by{|f| f}.values
+[3,3,4].group_by{|f| f}.values.map{|x| [x, x.count]}
