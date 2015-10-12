@@ -71,9 +71,13 @@ class Card
   def rank
     value[0]
   end
+
+  def suit
+    value[1]
+  end
+  
   def initialize value
     @value = value
-    suit = value[1]
     raise CardError, "'#{rank}' is not a valid rank" unless VALID_RANKS.include?(rank)
     raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
   end
