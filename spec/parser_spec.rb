@@ -68,6 +68,10 @@ RSpec.describe 'Rule application' do
     initial_hand = Hand.from('4s 5s')
     expect(rule.apply(initial_hand)).to eq({used: Hand.from('5s'), kicker: Hand.from('4s')})
   end
+
+  it 'should apply the pair rule to a single card' do
+    expect(Rule::PAIR.apply(Hand.from('5s'))).to eq ({:used => Hand::EMPTY, :kicker => Hand::EMPTY})
+  end
 end
 
 RSpec.describe "EmptyHand#==" do
