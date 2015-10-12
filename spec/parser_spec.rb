@@ -94,6 +94,12 @@ RSpec.describe 'Rule application' do
     actual = Rule::PAIR.apply(Hand.from('Ad 4d 3h 5d 5d'))
     expect(actual).to eq (expected)
   end
+
+  it 'should only take the highest PAIR' do
+    expected = Hand.from('6c 6d')
+    actual = Rule::PAIR.apply(Hand.from('5c 5d 6c 6d'))
+    expect(actual[:used]).to eq (expected)
+  end
 end
 
 RSpec.describe "EmptyHand#==" do
