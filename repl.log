@@ -343,3 +343,5 @@ expect
 [3,3,4].group_by{|f| f}
 [3,3,4].group_by{|f| f}.values
 [3,3,4].group_by{|f| f}.values.map{|x| [x, x.count]}
+[2,3].first
+[2,3].second

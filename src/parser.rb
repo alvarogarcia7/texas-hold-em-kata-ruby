@@ -108,8 +108,8 @@ class Rule
 
   HIGH_CARD = Rule.new(
       lambda { |cards|
-        sorted_cards = cards.map { |x| [x, Card::VALID_VALUES.index(x.face)]}.sort_by { |f| f[1]}.map { |x| x[0]}
-        used = sorted_cards[0]
+        sorted_cards = cards.map { |x| [x, Card::VALID_VALUES.index(x.face)]}.sort_by { |f| f[1]}.map { |x| x.first}
+        used = sorted_cards.first
         kicker = sorted_cards[1]
         if kicker.nil? then
           kicker = Hand::EMPTY
@@ -129,13 +129,13 @@ class Rule
         card_frequencies = cards
                                .group_by{|x| x.face}
                                .values.map{|x| [x.count, x]}
-                               .select{|x| x[0]==2}
+                               .select{|x| x.first==2}
                                .map { |x| x[1]}
                                .map { |x| [x, Card::VALID_VALUES.index(x[1].face)]}
                                .sort_by { |f| f[1]}
-                               .map { |x| x[0]}
+                               .map { |x| x.first}
 
-        used = card_frequencies[0]
+        used = card_frequencies.first
         if used.nil? then
           used = Hand::EMPTY
         else
