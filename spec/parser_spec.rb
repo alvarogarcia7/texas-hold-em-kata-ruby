@@ -78,7 +78,7 @@ RSpec.describe 'Rule application' do
     actual_result = rule.apply(initial_hand)
     puts expected_result
     puts actual_result
-    assert(expected_result==actual_result)
+    expect(actual_result).to eq(actual_result)
   end
 end
 
