@@ -131,7 +131,9 @@ class Rule
                                .values.map{|x| [x.count, x]}
                                .select{|x| x[0]==2}
                                .map { |x| x[1]}
-                               .map { |x| [x, Card::VALID_VALUES.index(x[1].face)]}.sort_by { |f| f[1]}.map { |x| x[0]}
+                               .map { |x| [x, Card::VALID_VALUES.index(x[1].face)]}
+                               .sort_by { |f| f[1]}
+                               .map { |x| x[0]}
 
         used = card_frequencies[0]
         if used.nil? then
