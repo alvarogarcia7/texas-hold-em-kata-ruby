@@ -338,3 +338,5 @@ EmptyHand.new.is_a?(Card)
 load "src/parser.rb"
 EmptyHand.new == EmptyHand.new
 EmptyHand.new == Hand.new([])
+load "src/parser.rb"
+expect

@@ -40,17 +40,11 @@ RSpec.describe 'Cards' do
     expect(Card.new('4s').value).to eq '4s'
   end
   it 'should detect an invalid card' do
-    expception = assert_raise(CardError) do
-      Card.new('1s')
-    end
-    assert_match(/'1' is not a valid number/, expception.message)
+    expect{Card.new('1s')}.to raise_error(CardError,/'1' is not a valid number/)
   end
 
   it 'should detect an invalid suit' do
-    expception = assert_raise(CardError) do
-      Card.new('4a')
-    end
-    assert_match(/'a' is not a valid suit/, expception.message)
+    expect{Card.new('4a')}.to raise_error(CardError,/'a' is not a valid suit/)
   end
 end
 
