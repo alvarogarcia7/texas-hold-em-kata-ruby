@@ -74,7 +74,7 @@ class Card
   def initialize value
     @value = value
     suit = value[1]
-    raise CardError, "'#{rank}' is not a valid number" unless VALID_VALUES.include?(rank)
+    raise CardError, "'#{rank}' is not a valid rank" unless VALID_VALUES.include?(rank)
     raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
   end
 

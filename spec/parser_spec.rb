@@ -40,7 +40,7 @@ RSpec.describe 'Cards' do
     expect(Card.new('4s').value).to eq '4s'
   end
   it 'should detect an invalid card' do
-    expect{Card.new('1s')}.to raise_error(CardError,/'1' is not a valid number/)
+    expect{Card.new('1s')}.to raise_error(CardError,/'1' is not a valid rank/)
   end
 
   it 'should detect an invalid suit' do
