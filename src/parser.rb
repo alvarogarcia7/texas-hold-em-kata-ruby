@@ -64,7 +64,7 @@ class Hand
 end
 
 class Card
-  VALID_VALUES = 'AKQJT98765432'.split('')
+  VALID_RANKS = 'AKQJT98765432'.split('')
   VALID_SUITES = 'cdhs'.split('')
   attr_reader :value
 
@@ -74,7 +74,7 @@ class Card
   def initialize value
     @value = value
     suit = value[1]
-    raise CardError, "'#{rank}' is not a valid rank" unless VALID_VALUES.include?(rank)
+    raise CardError, "'#{rank}' is not a valid rank" unless VALID_RANKS.include?(rank)
     raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
   end
 
@@ -107,7 +107,7 @@ class Rule
 
   HIGH_CARD = Rule.new(
       lambda { |cards|
-        sorted_cards = cards.map { |x| [x, Card::VALID_VALUES.index(x.rank)]}.sort_by { |f| f[1]}.map { |x| x.first}
+        sorted_cards = cards.map { |x| [x, Card::VALID_RANKS.index(x.rank)]}.sort_by { |f| f[1]}.map { |x| x.first}
         used = sorted_cards.first
         kicker = sorted_cards[1]
         if kicker.nil? then
@@ -130,7 +130,7 @@ class Rule
                                .values.map{|x| [x.count, x]}
                                .select{|x| x.first==2}
                                .map { |x| x[1]}
-                               .map { |x| [x, Card::VALID_VALUES.index(x[1].rank)]}
+                               .map { |x| [x, Card::VALID_RANKS.index(x[1].rank)]}
                                .sort_by { |f| f[1]}
                                .map { |x| x.first}
 
