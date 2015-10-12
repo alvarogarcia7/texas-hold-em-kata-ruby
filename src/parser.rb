@@ -68,13 +68,13 @@ class Card
   VALID_SUITES = 'cdhs'.split('')
   attr_reader :value
 
-  def face
+  def rank
     value[0]
   end
   def initialize value
     @value = value
     suit = value[1]
-    raise CardError, "'#{face}' is not a valid number" unless VALID_VALUES.include?(face)
+    raise CardError, "'#{rank}' is not a valid number" unless VALID_VALUES.include?(rank)
     raise CardError, "'#{suit}' is not a valid suit" unless VALID_SUITES.include?(suit)
   end
 
@@ -107,7 +107,7 @@ class Rule
 
   HIGH_CARD = Rule.new(
       lambda { |cards|
-        sorted_cards = cards.map { |x| [x, Card::VALID_VALUES.index(x.face)]}.sort_by { |f| f[1]}.map { |x| x.first}
+        sorted_cards = cards.map { |x| [x, Card::VALID_VALUES.index(x.rank)]}.sort_by { |f| f[1]}.map { |x| x.first}
         used = sorted_cards.first
         kicker = sorted_cards[1]
         if kicker.nil? then
@@ -126,11 +126,11 @@ class Rule
   PAIR = Rule.new(
       lambda { |cards|
         card_frequencies = cards
-                               .group_by{|x| x.face}
+                               .group_by{|x| x.rank}
                                .values.map{|x| [x.count, x]}
                                .select{|x| x.first==2}
                                .map { |x| x[1]}
-                               .map { |x| [x, Card::VALID_VALUES.index(x[1].face)]}
+                               .map { |x| [x, Card::VALID_VALUES.index(x[1].rank)]}
                                .sort_by { |f| f[1]}
                                .map { |x| x.first}
 
