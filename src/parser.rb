@@ -136,7 +136,12 @@ class Rule
         else
           used = Hand.new(used)
         end
-        kicker = Hand::EMPTY
+
+        if card_frequencies.size > 1 then
+          kicker = Hand.new(card_frequencies[1])
+        else
+          kicker = Hand::EMPTY
+        end
         {used: used, kicker: kicker}
       })
 
