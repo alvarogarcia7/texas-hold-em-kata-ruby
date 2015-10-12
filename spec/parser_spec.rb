@@ -60,9 +60,7 @@ end
 
 RSpec.describe 'Rule application' do
   it 'should apply the higher card rule to a single card' do
-    actual = Rule::HIGH_CARD.apply(Hand.from('5s'))
-    expected = {:used => Hand.from('5s'), :kicker => Hand::EMPTY}
-    expect(actual).to eq (expected)
+    expect(Rule::HIGH_CARD.apply(Hand.from('5s'))).to eq ({:used => Hand.from('5s'), :kicker => Hand::EMPTY})
   end
 
   it 'should apply the higher card rule to two cards' do
