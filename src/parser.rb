@@ -124,6 +124,22 @@ class Rule
     @block.call(hand.cards)
   end
 
+  def self.getFirstAndSecond(sorted_cards)
+    first = sorted_cards.first
+    if first.nil? then
+      first = Hand::EMPTY
+    else
+      first = Hand.new(first)
+    end
+
+    if sorted_cards.size > 1 then
+      second = Hand.new(sorted_cards[1])
+    else
+      second = Hand::EMPTY
+    end
+    return first, second
+  end
+
   HIGH_CARD = Rule.new(
       lambda { |cards|
         sorted_cards = cards
@@ -191,18 +207,7 @@ class Rule
                                .sort_by { |f| f[1]}
                                .map { |x| x.first}
 
-        used = card_frequencies.first
-        if used.nil? then
-          used = Hand::EMPTY
-        else
-          used = Hand.new(used)
-        end
-
-        if card_frequencies.size > 1 then
-          kicker = Hand.new(card_frequencies[1])
-        else
-          kicker = Hand::EMPTY
-        end
+        used, kicker = getFirstAndSecond(card_frequencies)
         {used: used, kicker: kicker}
       })
 
