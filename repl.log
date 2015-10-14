@@ -346,3 +346,15 @@ expect
 [2,3].first
 [2,3].second
 "123".extend""
+ri each
+q
+
+#Session ending at: 2015-10-12T18:26:51+02:00
+
+#Session ending at: 2015-10-12T18:26:58+02:00
+
+#Session ending at: 2015-10-12T18:27:20+02:00
+
+#Session ending at: 2015-10-12T18:27:24+02:00
+
+#Session ending at: 2015-10-12T18:28:06+02:00
