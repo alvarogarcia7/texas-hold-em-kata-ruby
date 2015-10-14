@@ -102,7 +102,9 @@ RSpec.describe 'Rule application' do
   end
 
   it 'should detect the TWO PAIR rule' do
-    expect(Rule::TWO_PAIR.apply(Hand.from('6d 6c 5c 5d'))).to eq({:used => Hand.from('6d 6c 5c 5d'), :kicker => Hand::EMPTY})
+    actual = Rule::TWO_PAIR.apply(Hand.from('6d 6c 5c 5d'))
+    expected = {:used => Hand.from('6d 6c 5c 5d'), :kicker => Hand::EMPTY}
+    expect(actual).to eq(expected)
   end
 
 
