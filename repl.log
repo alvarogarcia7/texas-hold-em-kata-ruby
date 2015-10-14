@@ -358,3 +358,19 @@ q
 #Session ending at: 2015-10-12T18:27:24+02:00
 
 #Session ending at: 2015-10-12T18:28:06+02:00
+[1,2,3].push[1]
+x= [1,2,3]
+x.push[1]
+x
+x.push[1]
+x
+x>>[1]
+x<<[1]
+x<<<[1]
+x.push[1]
+c
+x=[1,2,3]
+x.transpose
+x.extend
+x.extend([1])
+x.concat [2, nil, 4]

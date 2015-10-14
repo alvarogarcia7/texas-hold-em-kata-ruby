@@ -146,6 +146,16 @@ class Rule
       })
 
 
+  TWO_PAIR = Rule.new(
+        lambda { |cards|
+          pair = PAIR.apply(Hand.new(cards))
+          used = pair[:used].cards.concat(pair[:kicker].cards)
+          used = Hand.new(used)
+          kicker = Hand::EMPTY
+          {used: used, kicker: kicker}
+      })
+
+
 end
 
 
