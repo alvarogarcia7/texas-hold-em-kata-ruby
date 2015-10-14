@@ -113,6 +113,12 @@ RSpec.describe 'Rule application' do
     expect(actual).to eq(expected)
   end
 
+  it 'should detect the THREE OF A KIND rule' do
+    actual = Rule::THREE_OF_A_KIND.apply(Hand.from('6d 6c 6c'))
+    expected = {:used => Hand.from('6d 6c 6c'), :kicker => Hand::EMPTY}
+    expect(actual).to eq(expected)
+  end
+
 end
 
 RSpec.describe "EmptyHand#==" do
