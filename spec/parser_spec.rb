@@ -101,11 +101,13 @@ RSpec.describe 'Rule application' do
     expect(actual[:used]).to eq (expected)
   end
 
-  it 'should only take the highest PAIR' do
-    expected = Hand.from('5c 5d')
-    actual = Rule::PAIR.apply(Hand.from('5c 5d 6c 6d'))
-    expect(actual[:kicker]).to eq (expected)
+  it 'should detect the TWO PAIR rule' do
+    expected = Hand.from('5c 5d 6d 6c')
+    actual = Rule::TWO_PAIR.apply(Hand.from('5c 5d 6d 6d'))
+    expect(actual).to eq ({used: expected, kicker: Hand::EMPTY})
   end
+
+
 end
 
 RSpec.describe "EmptyHand#==" do
