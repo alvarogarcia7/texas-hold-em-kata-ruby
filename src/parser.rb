@@ -167,18 +167,7 @@ class Rule
                                .sort_by { |f| f[1]}
                                .map { |x| x.first}
 
-        used = card_frequencies.first
-        if used.nil? then
-          used = Hand::EMPTY
-        else
-          used = Hand.new(used)
-        end
-
-        if card_frequencies.size > 1 then
-          kicker = Hand.new(card_frequencies[1])
-        else
-          kicker = Hand::EMPTY
-        end
+        used, kicker = getFirstAndSecond card_frequencies
         {used: used, kicker: kicker}
       })
 
