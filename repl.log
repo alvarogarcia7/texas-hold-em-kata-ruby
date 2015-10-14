@@ -374,3 +374,9 @@ x.transpose
 x.extend
 x.extend([1])
 x.concat [2, nil, 4]
+[].empty?
+[] || [1]
+![]. || [1]
+1 and 2
+1 and 4
+true and false

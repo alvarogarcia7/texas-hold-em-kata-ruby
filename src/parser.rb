@@ -45,6 +45,19 @@ class Hand
   def self.from representation
     Reader.new(representation).convert
   end
+
+  def size
+    cards.size
+  end
+
+  def empty?
+    cards.empty?
+  end
+
+  def concat! hand
+    cards.concat hand.cards
+    nil
+  end
 end
 
 class EmptyHand < Hand
@@ -56,6 +69,14 @@ class EmptyHand < Hand
   def == other
     return @value == other.value if other.is_a?(EmptyHand)
     false
+  end
+
+  def concat! hand
+    nil
+  end
+
+  def self.empty?
+    true
   end
 end
 
@@ -149,10 +170,14 @@ class Rule
   TWO_PAIR = Rule.new(
         lambda { |cards|
           pair = PAIR.apply(Hand.new(cards))
-          used = pair[:used].cards.concat(pair[:kicker].cards)
-          used = Hand.new(used)
-          kicker = Hand::EMPTY
-          {used: used, kicker: kicker}
+          used = pair[:used]
+          kicker = pair[:kicker]
+          if used.empty? or kicker.empty? then
+            used = Hand::EMPTY
+          else
+            used.concat! kicker
+          end
+          {used: used, kicker: Hand::EMPTY}
       })
 
 
