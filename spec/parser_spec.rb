@@ -171,15 +171,14 @@ class Spike1
   end
 
   def describe
-    sorted_rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
-    rules = sorted_rules.reverse
+    rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
 
     hand_with_type_with_rule_index = @hands.map{|hand|
       rules.map{|rule|
         [hand.apply(rule), rule]
       }.select{|x| not x.first[:used].empty?}.reverse
-    }.map{|x| x.first}
-     .map{|x| [*x, sorted_rules.index(x[1])]}
+    }.map{|x| x.last}
+     .map{|x| [*x, rules.index(x[1])]}
 
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map {|hand, index|

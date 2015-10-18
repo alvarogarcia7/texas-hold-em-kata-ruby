@@ -389,3 +389,4 @@ true and false
 [1,2,1].min
 [1,2,1].select {|x| x ==1}
 [1,2,1].select {|x| x ==1}.first
+[1,2,1].last
