@@ -184,8 +184,7 @@ class Spike1
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map {|hand, index|
       rule = hand_with_type_with_rule_index[index][1]
-      rule_name = ""
-      rule_name = " #{rule.name}" unless rule == Rule::HIGH_CARD
+      rule_name = if rule == Rule::HIGH_CARD then "" else " #{rule.name}" end
       [hand.cards.map{|x| x.value}.join(" ") + rule_name, hand_with_type_with_rule_index[index][2]]
     }
 
