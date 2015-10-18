@@ -114,10 +114,11 @@ class Card
 end
 
 class Rule
-  attr_accessor :block
+  attr_accessor :block, :name
 
-  def initialize block
+  def initialize block, name
     @block = block
+    @name = name
   end
 
   def apply hand
@@ -154,7 +155,7 @@ class Rule
           kicker = Hand.new([kicker])
         end
         {used: Hand.new([used]), kicker: kicker}
-      })
+      }, "High card")
 
   PAIR = Rule.new(
       lambda { |cards|
@@ -169,7 +170,7 @@ class Rule
 
         used, kicker = getFirstAndSecond card_frequencies
         {used: used, kicker: kicker}
-      })
+      }, "Pair")
 
 
   TWO_PAIR = Rule.new(
@@ -183,7 +184,7 @@ class Rule
             used.concat! kicker
           end
           {used: used, kicker: Hand::EMPTY}
-      })
+      }, "Two Pair")
 
   THREE_OF_A_KIND = Rule.new(
       lambda { |cards|
@@ -198,7 +199,7 @@ class Rule
 
         used, kicker = getFirstAndSecond(card_frequencies)
         {used: used, kicker: kicker}
-      })
+      }, "Three of a kind")
 
 end
 

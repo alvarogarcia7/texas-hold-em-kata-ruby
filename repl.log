@@ -380,3 +380,6 @@ x.concat [2, nil, 4]
 1 and 2
 1 and 4
 true and false
+[1,2].unshift
+[1,2].remove_at(0)
+[1,2].delete_at(0)

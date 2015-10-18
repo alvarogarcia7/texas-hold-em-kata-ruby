@@ -150,3 +150,51 @@ RSpec.describe 'End to End' do
     hands.map { |x| puts x }
   end
 end
+
+describe "#General Play" do
+  it "should sort hands" do
+    hand_filename = File.dirname(__FILE__)+'/samples/hand3.hd'
+    hands = Parser.new(hand_filename).lines.map { |line| Reader.new(line).convert }
+    expect(Spike1.describe(hands)).to eq(
+"4s 4d 2h Ts 5h Jc Pair (winner)
+8h Ad 2h Ts 5h")
+  end
+end
+class Spike1
+  def self.describe(hands)
+    new(hands).describe
+  end
+
+  def initialize(hands)
+    @hands = hands
+  end
+
+  def describe
+    rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
+    result = rules.map { |rule| apply_next(rule)}
+    winner = {}
+
+    result.each_with_index {|x, index|
+      present_hands = x.each_with_index.map{ |z, i| [z,i]}.select { |y| not y.first.empty? }
+      unless present_hands.empty? then
+        winner[:hand] = present_hands.first.first
+        winner[:index] = present_hands.first[1]
+        winner[:rule] = rules[index].name
+        break
+      end
+    }
+    @hands.each_with_index.map { |x, i|
+      if winner[:index] == i then
+        x.cards.map{|x| x.value}.join(" ")+" #{winner[:rule]} (winner)"
+      else
+        x.cards.map{|x| x.value}.join(" ")
+      end
+    }.join("\n")
+  end
+
+  def apply_next(rule)
+    @hands.map { |hand| (hand.apply rule)[:used] }
+  end
+
+
+end
