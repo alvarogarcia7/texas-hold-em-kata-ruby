@@ -1,4 +1,8 @@
 class Parser
+  def self.from(hand_filename)
+    new(hand_filename).lines.map { |line| Reader.new(line).convert }
+  end
+
   def initialize file
     @file = file
   end

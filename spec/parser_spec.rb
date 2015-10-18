@@ -154,7 +154,7 @@ end
 describe "#General Play" do
   it "should sort hands" do
     hand_filename = File.dirname(__FILE__)+'/samples/hand3.hd'
-    hands = Parser.new(hand_filename).lines.map { |line| Reader.new(line).convert }
+    hands = Parser.from(hand_filename)
     expect(Spike1.describe(hands)).to eq(
 "4s 4d 2h Ts 5h Jc Pair (winner)
 8h Ad 2h Ts 5h")
