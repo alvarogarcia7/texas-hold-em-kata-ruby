@@ -196,41 +196,6 @@ class Spike1
 
     desc.map!{|x| x.first}
     return desc.join "\n"
-
-
-    p desc
-
-    result = rules.map { |rule| apply_next(rule)}
-    winners = result.map{|_| {}}
-
-    result.each_with_index {|x, index|
-      present_hands = x.each_with_index.map{ |z, i| [z,i]}.select { |y| not y.first.empty? }
-      unless present_hands.empty? then
-        winners[index][:hand] = present_hands.first.first
-        winners[index][:index] = present_hands.first[1]
-        winners[index][:rule] = rules[index].name
-      end
-    }
-
-    p winners
-
-    hand_description = @hands.each_with_index.map { |x, i|
-      if winners[:index] == i then
-        return [x.cards.map{|x| x.value}.join(" "), " #{winners[:rule]}"]
-      else
-        x.cards.map{|x| x.value}.join(" ")
-      end
-    }
-
-    winners.each_with_index.map{|w,i|
-      unless w.empty? then
-        hand_description[w[:index]] += " (winner)"
-        break
-      end
-    }
-
-    p winners
-
   end
 
   def apply_next(rule)
