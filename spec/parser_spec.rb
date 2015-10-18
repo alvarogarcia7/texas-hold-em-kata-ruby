@@ -173,21 +173,22 @@ class Spike1
   def describe
     rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
 
-    hand_with_type_with_rule_index = @hands.map{|hand|
-      rules.map{|rule|
+    applied_non_empty_rules = @hands.map { |hand|
+      rules.map { |rule|
         [hand.apply(rule), rule]
-      }.select{|x| not x.first[:used].empty?}.reverse
-    }.map{|x| x.last}
+      }.select { |x| not x.first[:used].empty? }.reverse
+    }
+    most_valuable_rule = applied_non_empty_rules.map{|x| x.last}
      .map{|x| [*x, rules.index(x[1])]}
 
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map {|hand, index|
-      rule = hand_with_type_with_rule_index[index][1]
+      rule = most_valuable_rule[index][1]
       rule_name = if rule == Rule::HIGH_CARD then '' else " #{rule.name}" end
-      [hand.cards.map{|x| x.value}.join(' ') + rule_name, hand_with_type_with_rule_index[index][2]]
+      [hand.cards.map{|x| x.value}.join(' ') + rule_name, most_valuable_rule[index][2]]
     }
 
-    winner_hand = hand_with_type_with_rule_index.map{|x| x[2]}.min
+    winner_hand = most_valuable_rule.map{|x| x[2]}.min
 
     desc.select{|x| x[1] == winner_hand}.first[0] += ' (winner)'
 

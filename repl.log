@@ -390,3 +390,11 @@ true and false
 [1,2,1].select {|x| x ==1}
 [1,2,1].select {|x| x ==1}.first
 [1,2,1].last
+Array.const_set
+Array.constants
+load "src/paser.rb"
+.pwd
+load "./src/paser.rb"
+load "src/parser.rb"
+Rule.constants
+Rule.constants.reverse
