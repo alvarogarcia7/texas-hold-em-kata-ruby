@@ -383,3 +383,9 @@ true and false
 [1,2].unshift
 [1,2].remove_at(0)
 [1,2].delete_at(0)
+[1,2].index 1
+[1,2].min
+[1,2m1].min
+[1,2,1].min
+[1,2,1].select {|x| x ==1}
+[1,2,1].select {|x| x ==1}.first

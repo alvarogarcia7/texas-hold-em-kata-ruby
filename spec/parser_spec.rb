@@ -171,26 +171,66 @@ class Spike1
   end
 
   def describe
-    rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
+    sorted_rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
+    rules = sorted_rules.reverse
+
+    hand_with_type_with_rule_index = @hands.map{|hand|
+      rules.map{|rule|
+        [hand.apply(rule), rule]
+      }.select{|x| not x.first[:used].empty?}.reverse
+    }.map{|x| x.first}
+     .map{|x| [*x, sorted_rules.index(x[1])]}
+
+    # p hand_with_type_with_rule_index
+    desc = @hands.each_with_index.map {|hand, index|
+      if hand_with_type_with_rule_index[index][1] != Rule::HIGH_CARD then
+        [hand.cards.map{|x| x.value}.join(" ") + " #{hand_with_type_with_rule_index[index][1].name}", hand_with_type_with_rule_index[index][2]]
+      else
+        [hand.cards.map{|x| x.value}.join(" "), hand_with_type_with_rule_index[index][2]]
+      end
+    }
+
+    winner_hand = hand_with_type_with_rule_index.map{|x| x[2]}.min
+
+    desc.select{|x| x[1] == winner_hand}.first[0] += " (winner)"
+
+    desc.map!{|x| x.first}
+    return desc.join "\n"
+
+
+    p desc
+
     result = rules.map { |rule| apply_next(rule)}
-    winner = {}
+    winners = result.map{|_| {}}
 
     result.each_with_index {|x, index|
       present_hands = x.each_with_index.map{ |z, i| [z,i]}.select { |y| not y.first.empty? }
       unless present_hands.empty? then
-        winner[:hand] = present_hands.first.first
-        winner[:index] = present_hands.first[1]
-        winner[:rule] = rules[index].name
-        break
+        winners[index][:hand] = present_hands.first.first
+        winners[index][:index] = present_hands.first[1]
+        winners[index][:rule] = rules[index].name
       end
     }
-    @hands.each_with_index.map { |x, i|
-      if winner[:index] == i then
-        x.cards.map{|x| x.value}.join(" ")+" #{winner[:rule]} (winner)"
+
+    p winners
+
+    hand_description = @hands.each_with_index.map { |x, i|
+      if winners[:index] == i then
+        return [x.cards.map{|x| x.value}.join(" "), " #{winners[:rule]}"]
       else
         x.cards.map{|x| x.value}.join(" ")
       end
-    }.join("\n")
+    }
+
+    winners.each_with_index.map{|w,i|
+      unless w.empty? then
+        hand_description[w[:index]] += " (winner)"
+        break
+      end
+    }
+
+    p winners
+
   end
 
   def apply_next(rule)

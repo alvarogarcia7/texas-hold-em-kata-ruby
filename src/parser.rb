@@ -125,6 +125,10 @@ class Rule
     @name = name
   end
 
+  def inspect
+    @name
+  end
+
   def apply hand
     @block.call(hand.cards)
   end
