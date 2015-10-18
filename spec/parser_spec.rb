@@ -183,11 +183,13 @@ class Spike1
 
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map {|hand, index|
-      if hand_with_type_with_rule_index[index][1] != Rule::HIGH_CARD then
-        [hand.cards.map{|x| x.value}.join(" ") + " #{hand_with_type_with_rule_index[index][1].name}", hand_with_type_with_rule_index[index][2]]
-      else
-        [hand.cards.map{|x| x.value}.join(" "), hand_with_type_with_rule_index[index][2]]
+      rule = hand_with_type_with_rule_index[index][1]
+      rule_name = " #{rule.name}"
+      if rule == Rule::HIGH_CARD then
+        rule_name = ""
       end
+      [hand.cards.map{|x| x.value}.join(" ") + rule_name, hand_with_type_with_rule_index[index][2]]
+
     }
 
     winner_hand = hand_with_type_with_rule_index.map{|x| x[2]}.min
