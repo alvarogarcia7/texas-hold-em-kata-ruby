@@ -153,10 +153,11 @@ end
 
 describe "#General Play" do
   it "should sort hands" do
-    hand_filename = File.dirname(__FILE__)+'/samples/hand3.hd'
+    hand_filename = File.dirname(__FILE__)+'/samples/hand2.hd'
     hands = Parser.from(hand_filename)
     expect(Spike1.describe(hands)).to eq(
-"4s 4d 2h Ts 5h Jc Pair (winner)
+"4s 4d 2h Ts 5h Jc Pair
+4s 4d 4h Ts 5h Jc Three of a kind (winner)
 8h Ad 2h Ts 5h")
   end
 end
