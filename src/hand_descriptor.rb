@@ -18,6 +18,11 @@ class HandDescriptor
     most_valuable_rule = applied_non_empty_rules
                              .map { |x| x.last }
                              .map { |x| [*x, rules.index(x[1])] }
+    # idea:
+    # [15] pry(main)> [nil, nil].zip([1,2],[1,2])
+    # => [[nil, 1, 1], [nil, 2, 2]]
+    # [16] pry(main)> [0, 0].zip([1,2],[1,2])
+    # => [[0, 1, 1], [0, 2, 2]]
 
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map { |hand, index|

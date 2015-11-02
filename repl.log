@@ -398,3 +398,20 @@ load "./src/paser.rb"
 load "src/parser.rb"
 Rule.constants
 Rule.constants.reverse
+a,b= [[1,2],[1,2]].zip
+a,b= [[1,2],[1,2]].zip(|x, y| [x, y])
+a,b= [[1,2],[1,2]].zip{|x, y| [x, y]}
+a,b= [[1,2],[1,2]].zip{|x, y| return [x, y]}
+a,b= [[1,2],[1,2]].zip{|x| [y]}
+a,b= [[1,2],[1,2]].zip{|x| [x]}
+a
+b
+help [].zip
+help zip
+a,b= [].zip([1,2],[3,4])
+a,b= [[]].zip([1,2],[3,4])
+a,b= [[]].zip([1,2],[1,2])
+a,b= [[],[]].zip([1,2],[1,2])
+a,b= [nil, nil].zip([1,2],[1,2])
+[nil, nil].zip([1,2],[1,2])
+[0, 0].zip([1,2],[1,2])
