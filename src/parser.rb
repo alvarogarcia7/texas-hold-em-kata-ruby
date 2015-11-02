@@ -62,6 +62,10 @@ class Hand
     cards.concat hand.cards
     nil
   end
+
+  def to_string
+   cards.map { |x| x.value }.join(' ')
+  end
 end
 
 class EmptyHand < Hand

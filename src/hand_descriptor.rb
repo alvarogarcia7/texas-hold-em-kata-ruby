@@ -24,7 +24,7 @@ class HandDescriptor
       rule = rules[index]
       hand_value = rule_value[index]
       rule_name = method_name(rule, [Rule::HIGH_CARD])
-      [hand.cards.map { |x| x.value }.join(' ') + rule_name, hand_value]
+      [hand.to_string + rule_name, hand_value]
     }.each { |x| if x[1] == rule_value.min then x[0] += ' (winner)' end }
     .map { |x| x.first }
 
