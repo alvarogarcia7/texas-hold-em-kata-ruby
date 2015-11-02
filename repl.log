@@ -436,3 +436,107 @@ a,b= [nil, nil].zip([1,2],[1,2])
 {a: 1, b:1}.group_by{|x| x.first}.keys
 {a: 1, b:1}.group_by{|x| x.first}.each{|x,y| p x}
 {a: 1, b:1}.group_by{|x| x.first}.each{|x,y| p y}
+{a: 1, b:1}.group_by{|x| x.first}
+[:a, :b].map { |x| 1}
+[:a, :b].map { |x| [x, 1]}
+[:a, :b].map { |x| [x, 1] }.group_by
+[:a, :b].map { |x| [x, 1] }.group_by{|x| x}
+[:a, :b].map { |x| [x, 1] }.group_by{|x| x.first}
+[:a, :b].map { |x| [x, 1] }.group_by{|x,j| x.first}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, j| x.first}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, l| x.first}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, l| x}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, l| l}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, l| x}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, l, m| x}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, l, m| m}
+[:a, :b].map { |x| [x, 1] }.group_by{|x, l| l}
+[2, 1].group_by{|x| x.even?}
+[2, 1].group_by{|x| [2, x.even?]}
+[2, 1].group_by{|x,i| [2, x.even?]}
+[2, 1].group_by{|x,i| [x.even?]}
+[2, 1].group_by{|x,i| [i, x.even?]}
+[2, 1].map{|x| {x: x.even?}}
+[2, 1].map{|x| {x: x.even?}}[0]
+[2, 1].map{|x| {x: x.even?}}.to_set
+[2, 1].map{|x| {x: x.even?}}.flatten
+[2, 1].map{|x| {x: x.even?}}.to_set
+[2, 1].map{|x| {x: x.even?}}.to_set.each {|x| p x}
+[2, 1].map{|x| {x: x.even?}}
+[2, 1].map{|x| {x => x.even?}}
+[2, 1].map{|x| {x => x.even?}}.to_set
+[2, 1].map{|x| {x => x.even?}}.to_set.each
+[2, 1].map{|x| {x => x.even?}}.to_set.each{|x| p x}
+[2, 1,3].map{|x| {x => x.even?}}.to_set.each{|x| p x}
+[2, 1,2].map{|x| {x => x.even?}}.to_set.each{|x| p x}
+eval("[2, 1].map{|x| {x => x.even?}}.to_set.each{|x| p x}")
+lines = []; File.open('./repl.log') do |file| lines = file.map {|l| l.strip} end
+lines[1]
+eval(lines[1])
+eval(lines[0])
+eval(lines[2])
+eval(lines[3])
+lines[3]
+lines = []; File.open('./repl.log') do |file| lines = file.map {|l| l} end; []
+lines[1]
+p lines[1]
+lines = []; File.open('./repl.log') do |file| lines = file.map {|l| l} end; []
+File.open( './repl.log' ) do |f| p "#{f.lineno}: #{line}" end
+File.foreach( './repl.log' ) do |line|
+  p "#{line}"
+end
+lines = []
+File.foreach( './repl.log' ) do |line|
+  lines << "#{line}"
+end
+lines
+File.foreach( './repl.log' ) do |line|
+  lines << line
+end
+lines
+p lines[0]
+lines[0].escape
+lines[0]
+source load
+source :load
+source "load"
+lines = []; File.foreach( './repl.log' ) do |line|  lines << "#{line}" end
+lines
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.trim end
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip end
+lines
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.replace("\"","") end
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.replace("\\"","") end
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.replace('\"',"") end
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.replace('\"','') end
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.replace('\\"','') end
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.sub('\\"','') end
+lines
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.sub('\"','') end
+lines[0]
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.gsub('\"','') end
+lines[0]
+"\"a"
+"\"a".sub('\"','')
+"\"a".sub('\\"','')
+"\"a".sub('\/"','')
+"\"a".sub('\"','')
+"\"a".sub("\"",'')
+lines = []; File.foreach( './repl.log' ) do |line|  lines << line.strip.gsub("\"",'') end
+lines[0]
+eval(lines[0])
+eval(lines[1])
+eval(lines[2])
+eval(lines[3])
+eval(lines[4])
+eval(lines[5])
+eval(lines[6])
+eval(lines[7])
+eval(lines[8])
+eval(lines[9])
+eval(lines109])
+eval(lines[10])
+eval(lines[11])
+eval(lines[12])
+eval(lines[13])
+eval(lines[14])
