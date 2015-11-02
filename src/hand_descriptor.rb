@@ -39,8 +39,8 @@ class HandDescriptor
 
     desc.select { |x| x[1] == winner_hand }.first[0] += ' (winner)'
 
-    desc.map! { |x| x.first }
-    return desc.join "\n"
+    hands = desc.map { |x| x.first }
+    return hands.join "\n"
   end
 
   def apply_next(rule)
