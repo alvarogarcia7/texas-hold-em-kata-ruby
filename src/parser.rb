@@ -63,8 +63,8 @@ class Hand
     nil
   end
 
-  def to_string
-   cards.map { |x| x.value }.join(' ')
+  def describe_as rule_name
+   cards.map { |x| x.value }.join(' ') + rule_name
   end
 end
 
