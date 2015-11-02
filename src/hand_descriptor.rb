@@ -20,15 +20,13 @@ class HandDescriptor
                              .map { |x| [x[1], rules.index(x[1])] }
                              .transpose
 
-    desc = @hands.each_with_index.map { |hand, index|
+    hands = @hands.each_with_index.map { |hand, index|
       rule = rules[index]
       rule_name = method_name(rule, [Rule::HIGH_CARD])
       [hand.cards.map { |x| x.value }.join(' ') + rule_name, rule_value[index]]
-    }
+    }.each { |x| if x[1] == rule_value.min then x[0] += ' (winner)' end }
+    .map { |x| x.first }
 
-    desc.select { |x| x[1] == rule_value.min }.first[0] += ' (winner)'
-
-    hands = desc.map { |x| x.first }
     return hands.join "\n"
   end
 
