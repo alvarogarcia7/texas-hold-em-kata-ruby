@@ -27,7 +27,7 @@ class HandDescriptor
       [hand.cards.map { |x| x.value }.join(' ') + rule_name, rule_value[index]]
     }
 
-    winner_hand = rule_value.map { |x| x[1] }.min
+    winner_hand = rule_value.min
 
     desc.select { |x| x[1] == winner_hand }.first[0] += ' (winner)'
 
