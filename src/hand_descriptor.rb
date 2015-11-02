@@ -27,11 +27,7 @@ class HandDescriptor
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map { |hand, index|
       rule = most_valuable_rule[index][1]
-      rule_name = if rule == Rule::HIGH_CARD then
-                    ''
-                  else
-                    " #{rule.name}"
-                  end
+      rule_name = method_name(rule, [Rule::HIGH_CARD])
       [hand.cards.map { |x| x.value }.join(' ') + rule_name, most_valuable_rule[index][2]]
     }
 
@@ -41,6 +37,14 @@ class HandDescriptor
 
     hands = desc.map { |x| x.first }
     return hands.join "\n"
+  end
+
+  def method_name(rule, exceptions)
+    if exceptions.include? rule then
+      ''
+    else
+      " #{rule.name}"
+    end
   end
 
   def apply_next(rule)
