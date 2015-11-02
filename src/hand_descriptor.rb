@@ -15,23 +15,19 @@ class HandDescriptor
         [hand.apply(rule), rule]
       }.select { |x| not x.first[:used].empty? }.reverse
     }
-    most_valuable_rule = applied_non_empty_rules
+    s3,s4  = applied_non_empty_rules
                              .map { |x| x.last }
                              .map { |x| [x[1], rules.index(x[1])] }
-    # idea:
-    # [15] pry(main)> [nil, nil].zip([1,2],[1,2])
-    # => [[nil, 1, 1], [nil, 2, 2]]
-    # [16] pry(main)> [0, 0].zip([1,2],[1,2])
-    # => [[0, 1, 1], [0, 2, 2]]
+                             .transpose
 
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map { |hand, index|
-      rule = most_valuable_rule[index][0]
+      rule = s3[index]
       rule_name = method_name(rule, [Rule::HIGH_CARD])
-      [hand.cards.map { |x| x.value }.join(' ') + rule_name, most_valuable_rule[index][1]]
+      [hand.cards.map { |x| x.value }.join(' ') + rule_name, s4[index]]
     }
 
-    winner_hand = most_valuable_rule.map { |x| x[1] }.min
+    winner_hand = s4.map { |x| x[1] }.min
 
     desc.select { |x| x[1] == winner_hand }.first[0] += ' (winner)'
 
