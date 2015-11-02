@@ -15,7 +15,7 @@ class HandDescriptor
         [hand.apply(rule), rule]
       }.select { |x| not x.first[:used].empty? }.reverse
     }.map { |x| x.last }
-    .map { |x| x[1] }
+    .map { |x| x.last }
 
     rules, rule_value  = rules_that_apply
                              .map { |x| [x, rules.index(x)] }
