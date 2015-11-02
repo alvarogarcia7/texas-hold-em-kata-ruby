@@ -15,7 +15,8 @@ class HandDescriptor
         [hand.apply(rule), rule]
       }.select { |x| not x.first[:used].empty? }.reverse
     }
-    most_valuable_rule = applied_non_empty_rules.map { |x| x.last }
+    most_valuable_rule = applied_non_empty_rules
+                             .map { |x| x.last }
                              .map { |x| [*x, rules.index(x[1])] }
 
     # p hand_with_type_with_rule_index
