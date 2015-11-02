@@ -155,13 +155,13 @@ describe "#General Play" do
   it "should sort hands" do
     hand_filename = File.dirname(__FILE__)+'/samples/hand2.hd'
     hands = Parser.from(hand_filename)
-    expect(Spike1.describe(hands)).to eq(
+    expect(HandDescriptor.describe(hands)).to eq(
 "4s 4d 2h Ts 5h 3c Jc Pair
 4s 4d 4h Ts 5h 3c Jc Three of a kind (winner)
 8h Ad 2h Ts 5h")
   end
 end
-class Spike1
+class HandDescriptor
   def self.describe(hands)
     new(hands).describe
   end
