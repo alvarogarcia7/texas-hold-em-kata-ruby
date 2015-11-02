@@ -20,7 +20,6 @@ class HandDescriptor
                              .map { |x| [x[1], rules.index(x[1])] }
                              .transpose
 
-    # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map { |hand, index|
       rule = rules[index]
       rule_name = method_name(rule, [Rule::HIGH_CARD])
