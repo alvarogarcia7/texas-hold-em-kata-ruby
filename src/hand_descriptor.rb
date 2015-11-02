@@ -10,12 +10,12 @@ class HandDescriptor
   def describe
     rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
 
-    applied_non_empty_rules = @hands.map { |hand|
+    rules_that_apply = @hands.map { |hand|
       rules.map { |rule|
         [hand.apply(rule), rule]
       }.select { |x| not x.first[:used].empty? }.reverse
     }
-    rules, rule_value  = applied_non_empty_rules
+    rules, rule_value  = rules_that_apply
                              .map { |x| x.last }
                              .map { |x| [x[1], rules.index(x[1])] }
                              .transpose
