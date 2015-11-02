@@ -15,19 +15,19 @@ class HandDescriptor
         [hand.apply(rule), rule]
       }.select { |x| not x.first[:used].empty? }.reverse
     }
-    s3,s4  = applied_non_empty_rules
+    rules, rule_value  = applied_non_empty_rules
                              .map { |x| x.last }
                              .map { |x| [x[1], rules.index(x[1])] }
                              .transpose
 
     # p hand_with_type_with_rule_index
     desc = @hands.each_with_index.map { |hand, index|
-      rule = s3[index]
+      rule = rules[index]
       rule_name = method_name(rule, [Rule::HIGH_CARD])
-      [hand.cards.map { |x| x.value }.join(' ') + rule_name, s4[index]]
+      [hand.cards.map { |x| x.value }.join(' ') + rule_name, rule_value[index]]
     }
 
-    winner_hand = s4.map { |x| x[1] }.min
+    winner_hand = rule_value.map { |x| x[1] }.min
 
     desc.select { |x| x[1] == winner_hand }.first[0] += ' (winner)'
 
