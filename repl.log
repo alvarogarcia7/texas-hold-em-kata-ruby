@@ -421,3 +421,18 @@ a,b= [nil, nil].zip([1,2],[1,2])
 [0,1].second
 [0,1].sec
 [0,1].se
+{a: 1, b:1}.transpose
+{a: 1, b:1}.group_by
+{a: 1, b:1}.group_by{|x| x}
+{a: 1, b:1}.group_by{|x| x.key}
+{a: 1, b:1}.group_by{|x| p x}
+{a: 1, b:1}.group_by{|x| x.first}
+{a: 1, b:1}.group_by{|x| [x.first, x[1]}
+{a: 1, b:1}.group_by{|x| [x.first, x[1]]}
+{a: 1, b:1}.group_by{|x| [x.first, x[0]]}
+{a: 1, b:1}.group_by{|x| [x.first]}
+{a: 1, b:1}.group_by{|x| x.first}
+{a: 1, b:1}.group_by{|x| x.first}.flatten
+{a: 1, b:1}.group_by{|x| x.first}.keys
+{a: 1, b:1}.group_by{|x| x.first}.each{|x,y| p x}
+{a: 1, b:1}.group_by{|x| x.first}.each{|x,y| p y}
