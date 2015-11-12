@@ -63,13 +63,14 @@ class HandDescriptor
   end
 
   def mark_winner! hands
-    if hands.count {|hand| hand[:winner]} == 1
-      hands.each { |hand| 
-        if most_valuable_rule? hand
-          hand[:description] += ' (winner)'
-        end
-      }
+    winners = hands.select {|hand| hand[:winner]}
+    if only_one? winners
+      winners.first[:description] += ' (winner)'
     end
+  end
+
+  def only_one? hands
+    hands.size == 1
   end
 
   def obtain_description hand, index
