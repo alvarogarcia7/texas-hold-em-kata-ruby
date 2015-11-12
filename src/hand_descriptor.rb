@@ -63,7 +63,7 @@ class HandDescriptor
   end
 
   def mark_winner! hands
-    winners = hands.select {|hand| hand[:winner]}
+    winners = find_winners hands
     if only_one? winners
       winners.first[:description] += ' (winner)'
     end
@@ -71,6 +71,10 @@ class HandDescriptor
 
   def only_one? hands
     hands.size == 1
+  end
+
+  def find_winners hands
+    hands.select {|hand| hand[:winner]}
   end
 
   def obtain_description hand, index
