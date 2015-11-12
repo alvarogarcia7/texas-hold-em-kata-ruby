@@ -14,6 +14,12 @@ class HandDescriptor
 
     rules, rule_value  = sort rules_that_apply, rules
 
+    describe_hands rules, rule_value
+  end
+
+  private
+
+  def describe_hands rules, rule_value 
     hands = @hands.each_with_index.map { |hand, index|
       rule = rules[index]
       hand_value = rule_value[index]
@@ -28,8 +34,6 @@ class HandDescriptor
 
     return hands.join "\n"
   end
-
-  private
 
   def sort hands, rules
      hands
