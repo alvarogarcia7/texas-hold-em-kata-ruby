@@ -4,9 +4,9 @@ class Array
   end
 
   def apply2_with_index &block
-    self.each_with_index.map{ |x,y|
+    self.each_with_index.map{ |element,index|
       f = block.()
-      f.(x,y)
+      f.(element,index)
     }
   end
 end
