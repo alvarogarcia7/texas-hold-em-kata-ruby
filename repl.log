@@ -549,3 +549,27 @@ eval(lines[14])
 [:a, :a].rf
 [:a, :a].select {|x| x == :a}
 [:a, :a].count {|x| x == :a}
+[1,2].map even?
+[1,2].map :even?
+[1,2].map(:even?)
+[1,2].map{|*| p *}
+[1,2].map{|_| p _}
+[1,2].map
+[1,2].each_with_index
+[1,2].each_with_index.each {|x,y| p x}
+[1,2].each_with_index.each {|x,y| p x, y }
+[1,2].each_with_index.each {|x,y| p "#{x}, #{y}" }
+[1,2].each_with_index.each {|x,y,z| p "#{x}, #{y}, #{z}" }
+[1,2].each_with_index.each {|x,y,z| p x }
+[1,2].each_with_index.each {|[x]| p x }
+[1,2].each_with_index.each {|x,y| p x }
+[1,2].each_with_index
+enum = [1,2].each_with_index
+enum.each {|x,y| p x }
+enum.each {|x,y| [x,y] }
+enum = [1,2].each_with_index
+enum.each {|x,y| [x,y] }
+enum.map {|x,y| [x,y] }
+res = []
+enum.map {|x,y| res.push [x,y] }
+res

@@ -1,3 +1,10 @@
+class Enumerator
+  def apply2 &block
+    self.map{ |x,y| block.().(x,y) }
+  end
+end
+
+
 class HandDescriptor
   def self.describe(hands)
     new(hands).describe
@@ -17,12 +24,10 @@ class HandDescriptor
     describe_hands
   end
 
-  private
 
   def describe_hands
-    hands = @hands.each_with_index.map { |hand, index|
-      obtain_description hand, index
-    }.each { |x| if x[:value] == @rule_value.min then x[:winner] = true end }
+    hands = @hands.each_with_index.apply2{self.method(:obtain_description)}
+    .each { |x| if x[:value] == @rule_value.min then x[:winner] = true end }
     
     if hands.count {|hand| hand[:winner]} == 1
       hands.each { |x| if x[:value] == @rule_value.min then x[:description] += ' (winner)' end }
@@ -38,6 +43,8 @@ class HandDescriptor
     rule_name = method_name(rule, [Rule::HIGH_CARD])
     {description: hand.describe_as(rule_name), value: hand_value}
   end
+
+  private
 
   def sort rules
      @rules, @rule_value = @rules_that_apply
