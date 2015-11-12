@@ -7,6 +7,12 @@ class Enumerator
   end
 end
 
+class Array
+  def select_attribute attr
+    self.map { |x| x[attr] }
+  end
+end
+
 
 class HandDescriptor
   def self.describe(hands)
@@ -35,7 +41,7 @@ class HandDescriptor
     if hands.count {|hand| hand[:winner]} == 1
       hands.each { |x| if x[:value] == @rule_value.min then x[:description] += ' (winner)' end }
     end
-    hands = hands.map { |x| x[:description]}
+    hands = hands.select_attribute :description
 
     return hands.join "\n"
   end
