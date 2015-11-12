@@ -1,15 +1,13 @@
-class Enumerator
-  def apply2 &block
-    self.map{ |x,y|
-      f = block.()
-      f.(x,y)
-    }
-  end
-end
-
 class Array
   def select_attribute attr
     self.map { |unit| unit[attr] }
+  end
+
+  def apply2_with_index &block
+    self.each_with_index.map{ |x,y|
+      f = block.()
+      f.(x,y)
+    }
   end
 end
 
@@ -38,7 +36,7 @@ class HandDescriptor
   end
 
   def describe_hands
-    hands = @hands.each_with_index.apply2{ method(:obtain_description) }
+    hands = @hands.apply2_with_index{ method(:obtain_description) }
     
     mark_most_valuable! hands
     
