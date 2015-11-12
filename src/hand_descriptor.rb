@@ -37,7 +37,6 @@ class HandDescriptor
     hand[:value] == @rule_value.min
   end
 
-
   def describe_hands
     hands = @hands.each_with_index.apply2{ method(:obtain_description) }
     
