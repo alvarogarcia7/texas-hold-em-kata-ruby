@@ -40,9 +40,9 @@ class HandDescriptor
 
   def describe_hands
     hands = @hands.each_with_index.apply2{ method(:obtain_description) }
-    .each { |x|
-     if most_valuable_rule? x
-       x[:winner] = true
+    .each { |hand|
+     if most_valuable_rule? hand
+       hand[:winner] = true
      end
     }
     
