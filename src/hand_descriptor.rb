@@ -79,6 +79,7 @@ class HandDescriptor
   end
 
   def apply_next(rule)
-    @hands.map { |hand| (hand.apply rule)[:used] }
+    @hands.map { |hand| (hand.apply rule) }
+          .select_attribute :used
   end
 end
