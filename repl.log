@@ -546,3 +546,6 @@ eval(lines[14])
 [1,2,3].map {|x| [x, x.even?]}.select {|x| x[1]}
 [1,2,3].map {|x| [x, x.even?]}
 [1,2,3].select {|x| x.even?}
+[:a, :a].rf
+[:a, :a].select {|x| x == :a}
+[:a, :a].count {|x| x == :a}
