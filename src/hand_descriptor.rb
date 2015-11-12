@@ -1,6 +1,9 @@
 class Enumerator
   def apply2 &block
-    self.map{ |x,y| block.().(x,y) }
+    self.map{ |x,y|
+      f = block.()
+      f.(x,y)
+    }
   end
 end
 
