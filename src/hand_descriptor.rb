@@ -64,12 +64,12 @@ class HandDescriptor
 
   def mark_winner! hands
     winners = find_winners hands
-    if only_one? winners
+    if one? winners
       winners.first[:description] += ' (winner)'
     end
   end
 
-  def only_one? hands
+  def one? hands
     hands.size == 1
   end
 
