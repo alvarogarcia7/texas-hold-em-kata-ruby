@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../src/parser.rb')
+require_relative '../src/parser.rb'
 require_relative '../src/hand_descriptor.rb'
 
 RSpec.describe 'Canary test' do

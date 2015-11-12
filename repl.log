@@ -540,3 +540,9 @@ eval(lines[11])
 eval(lines[12])
 eval(lines[13])
 eval(lines[14])
+[
+[1,2,3].map {|x| [x, even?]}
+[1,2,3].map {|x| [x, x.even?]}
+[1,2,3].map {|x| [x, x.even?]}.select {|x| x[1]}
+[1,2,3].map {|x| [x, x.even?]}
+[1,2,3].select {|x| x.even?}
