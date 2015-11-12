@@ -37,6 +37,8 @@ class HandDescriptor
     return hands.join "\n"
   end
 
+  private
+
   def method_name(rule, exceptions)
     if exceptions.include? rule then
       ''
