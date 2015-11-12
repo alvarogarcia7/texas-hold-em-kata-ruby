@@ -35,7 +35,7 @@ class HandDescriptor
     if hands.count {|hand| hand[:winner]} == 1
       hands.each { |x| if x[:value] == @rule_value.min then x[:description] += ' (winner)' end }
     end
-    hands.map! { |x| x[:description]}
+    hands = hands.map { |x| x[:description]}
 
     return hands.join "\n"
   end
