@@ -36,7 +36,11 @@ class HandDescriptor
 
   def describe_hands
     hands = @hands.each_with_index.apply2{ method(:obtain_description) }
-    .each { |x| if x[:value] == @rule_value.min then x[:winner] = true end }
+    .each { |x|
+     if x[:value] == @rule_value.min
+       x[:winner] = true
+     end
+    }
     
     mark_winner hands
     hands = hands.select_attribute :description
