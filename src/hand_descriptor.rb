@@ -40,16 +40,21 @@ class HandDescriptor
 
   def describe_hands
     hands = @hands.each_with_index.apply2{ method(:obtain_description) }
-    .each { |hand|
-     if most_valuable_rule? hand
-       hand[:winner] = true
-     end
-    }
+    
+    mark_most_valuable! hands
     
     mark_winner hands
     hands = hands.select_attribute :description
 
     return hands.join "\n"
+  end
+
+  def mark_most_valuable! hands
+    hands.each { |hand|
+     if most_valuable_rule? hand
+       hand[:winner] = true
+     end
+    }
   end
 
   def mark_winner hands
