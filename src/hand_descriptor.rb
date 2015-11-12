@@ -12,10 +12,7 @@ class HandDescriptor
 
     rules_that_apply = apply_rules rules
 
-    rules, rule_value  = rules_that_apply
-                             .map { |x| [x, rules.index(x)] }
-                             .transpose
-
+    rules, rule_value  = sort rules_that_apply, rules
 
     hands = @hands.each_with_index.map { |hand, index|
       rule = rules[index]
@@ -33,6 +30,12 @@ class HandDescriptor
   end
 
   private
+
+  def sort hands, rules
+     hands
+       .map { |x| [x, rules.index(x)] }
+       .transpose
+  end
 
   def apply_rules rules
     rules_that_apply = @hands.map { |hand|
