@@ -44,6 +44,7 @@ class HandDescriptor
     mark_most_valuable! hands
     
     mark_winner! hands
+    
     hands = hands.select_attribute :description
 
     return hands.join "\n"
