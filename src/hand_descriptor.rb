@@ -10,9 +10,9 @@ class HandDescriptor
   def describe
     rules = [Rule::THREE_OF_A_KIND, Rule::TWO_PAIR, Rule::PAIR, Rule::HIGH_CARD]
 
-    rules_that_apply = apply_rules rules
+    apply_rules rules
 
-    rules, rule_value  = sort rules_that_apply, rules
+    rules, rule_value  = sort rules
 
     describe_hands rules, rule_value
   end
@@ -35,14 +35,14 @@ class HandDescriptor
     return hands.join "\n"
   end
 
-  def sort hands, rules
-     hands
+  def sort rules
+     @rules_that_apply
        .map { |x| [x, rules.index(x)] }
        .transpose
   end
 
   def apply_rules rules
-    rules_that_apply = @hands.map { |hand|
+    @rules_that_apply = @hands.map { |hand|
       rules.map { |rule|
         [hand.apply(rule), rule]
       }.select { |x| not x.first[:used].empty? }.reverse
