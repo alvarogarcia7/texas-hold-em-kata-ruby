@@ -43,7 +43,7 @@ class HandDescriptor
     
     mark_most_valuable! hands
     
-    mark_winner hands
+    mark_winner! hands
     hands = hands.select_attribute :description
 
     return hands.join "\n"
@@ -57,7 +57,7 @@ class HandDescriptor
     }
   end
 
-  def mark_winner hands
+  def mark_winner! hands
     if hands.count {|hand| hand[:winner]} == 1
       hands.each { |x| if x[:value] == @rule_value.min then x[:description] += ' (winner)' end }
     end
