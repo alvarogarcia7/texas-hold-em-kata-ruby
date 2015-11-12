@@ -12,23 +12,23 @@ class HandDescriptor
 
     apply_rules rules
 
-    rules, rule_value  = sort rules
+    sort rules
 
-    describe_hands rules, rule_value
+    describe_hands
   end
 
   private
 
-  def describe_hands rules, rule_value 
+  def describe_hands
     hands = @hands.each_with_index.map { |hand, index|
-      rule = rules[index]
-      hand_value = rule_value[index]
+      rule = @rules[index]
+      hand_value = @rule_value[index]
       rule_name = method_name(rule, [Rule::HIGH_CARD])
       {description: hand.describe_as(rule_name), value: hand_value}
-    }.each { |x| if x[:value] == rule_value.min then x[:winner] = true end }
+    }.each { |x| if x[:value] == @rule_value.min then x[:winner] = true end }
     
     if hands.count {|hand| hand[:winner]} == 1
-      hands.each { |x| if x[:value] == rule_value.min then x[:description] += ' (winner)' end }
+      hands.each { |x| if x[:value] == @rule_value.min then x[:description] += ' (winner)' end }
     end
     hands.map! { |x| x[:description]}
 
@@ -36,7 +36,7 @@ class HandDescriptor
   end
 
   def sort rules
-     @rules_that_apply
+     @rules, @rule_value = @rules_that_apply
        .map { |x| [x, rules.index(x)] }
        .transpose
   end
