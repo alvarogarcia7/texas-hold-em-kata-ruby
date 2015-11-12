@@ -60,7 +60,11 @@ class HandDescriptor
 
   def mark_winner! hands
     if hands.count {|hand| hand[:winner]} == 1
-      hands.each { |hand| if hand[:value] == @rule_value.min then hand[:description] += ' (winner)' end }
+      hands.each { |hand| 
+        if hand[:value] == @rule_value.min
+          hand[:description] += ' (winner)'
+        end
+      }
     end
   end
 
