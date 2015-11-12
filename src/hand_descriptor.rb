@@ -47,7 +47,11 @@ class HandDescriptor
 
     hands = hands.select_attribute :description
 
-    return hands.join "\n"
+    return prepare_descriptions hands
+  end
+
+  def prepare_descriptions hands
+    hands.join "\n"
   end
 
   def mark_most_valuable! hands
