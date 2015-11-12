@@ -6,7 +6,7 @@ class Array
   def apply2_with_index &block
     self.each_with_index.map{ |element,index|
       function = block.()
-      function.(element,index)
+      function.call(element,index)
     }
   end
 end
