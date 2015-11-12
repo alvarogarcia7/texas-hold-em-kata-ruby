@@ -9,7 +9,7 @@ end
 
 class Array
   def select_attribute attr
-    self.map { |x| x[attr] }
+    self.map { |unit| unit[attr] }
   end
 end
 
