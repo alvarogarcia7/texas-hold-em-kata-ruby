@@ -125,6 +125,14 @@ RSpec.describe 'Rule application' do
     expect(actual[:kicker]).to eq(Hand.from('3c 3d 3h'))
   end
 
+  it 'should generate no winners on a tie scenario' do
+    hand = Hand.from('6d 6c')
+    hands = [hand, hand]
+    expect(HandDescriptor.describe(hands)).to eq(
+"6d 6c Pair
+6d 6c Pair")
+  end
+
 end
 
 RSpec.describe "EmptyHand#==" do
