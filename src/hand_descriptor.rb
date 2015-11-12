@@ -33,11 +33,15 @@ class HandDescriptor
     describe_hands
   end
 
+  def most_valuable_rule? hand
+    hand[:value] == @rule_value.min
+  end
+
 
   def describe_hands
     hands = @hands.each_with_index.apply2{ method(:obtain_description) }
     .each { |x|
-     if x[:value] == @rule_value.min
+     if most_valuable_rule? x
        x[:winner] = true
      end
     }
