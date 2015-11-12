@@ -26,7 +26,7 @@ class HandDescriptor
 
 
   def describe_hands
-    hands = @hands.each_with_index.apply2{self.method(:obtain_description)}
+    hands = @hands.each_with_index.apply2{ method(:obtain_description) }
     .each { |x| if x[:value] == @rule_value.min then x[:winner] = true end }
     
     if hands.count {|hand| hand[:winner]} == 1
