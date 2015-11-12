@@ -21,10 +21,7 @@ class HandDescriptor
 
   def describe_hands
     hands = @hands.each_with_index.map { |hand, index|
-      rule = @rules[index]
-      hand_value = @rule_value[index]
-      rule_name = method_name(rule, [Rule::HIGH_CARD])
-      {description: hand.describe_as(rule_name), value: hand_value}
+      obtain_description hand, index
     }.each { |x| if x[:value] == @rule_value.min then x[:winner] = true end }
     
     if hands.count {|hand| hand[:winner]} == 1
@@ -33,6 +30,13 @@ class HandDescriptor
     hands.map! { |x| x[:description]}
 
     return hands.join "\n"
+  end
+
+  def obtain_description hand, index
+    rule = @rules[index]
+    hand_value = @rule_value[index]
+    rule_name = method_name(rule, [Rule::HIGH_CARD])
+    {description: hand.describe_as(rule_name), value: hand_value}
   end
 
   def sort rules
