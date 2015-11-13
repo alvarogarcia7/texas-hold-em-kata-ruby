@@ -202,14 +202,9 @@ class Rule
 
   THREE_OF_A_KIND = Rule.new(
       lambda { |cards|
-        card_frequencies = cards
-                               .group_by{|x| x.rank}
-                               .values.map{|x| [x.count, x]}
+        card_frequencies = card_frequencies(cards)
                                .select{|x| x.first==3}
                                .map { |x| x[1]}
-                               .map { |x| [x, Card::VALID_RANKS.index(x[1].rank)]}
-                               .sort_by { |f| f[1]}
-                               .map { |x| x.first}
 
         used, kicker = getFirstAndSecond(card_frequencies)
         {used: used, kicker: kicker}
