@@ -163,9 +163,7 @@ class Rule
   HIGH_CARD = Rule.new(
       lambda { |cards|
         sorted_cards = cards
-                           .map { |x| [x, Card::VALID_RANKS.index(x.rank)]}
-                           .sort_by { |f| f[1]}
-                           .map { |x| x.first}
+                           .sort_by { |x| Card::VALID_RANKS.index(x.rank)}
         used = sorted_cards.first
         kicker = sorted_cards[1]
         if kicker.nil? then
