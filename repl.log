@@ -573,3 +573,7 @@ enum.map {|x,y| [x,y] }
 res = []
 enum.map {|x,y| res.push [x,y] }
 res
+require 'src/hand_descriptor.rb'
+require './src/hand_descriptor.rb'
+require './src/parser.rb'
+Hand.from('4c 4d')

@@ -153,6 +153,13 @@ class Rule
     return first, second
   end
 
+  def self.card_frequencies cards
+    cards
+      .group_by{|x| x.rank}
+      .values.map{|x| [x.count, x, Card::VALID_RANKS.index(x.first.rank)]}
+      .sort_by { |f| f[2]}
+  end
+
   HIGH_CARD = Rule.new(
       lambda { |cards|
         sorted_cards = cards
@@ -171,14 +178,9 @@ class Rule
 
   PAIR = Rule.new(
       lambda { |cards|
-        card_frequencies = cards
-                               .group_by{|x| x.rank}
-                               .values.map{|x| [x.count, x]}
+        card_frequencies = card_frequencies(cards)
                                .select{|x| x.first==2}
                                .map { |x| x[1]}
-                               .map { |x| [x, Card::VALID_RANKS.index(x[1].rank)]}
-                               .sort_by { |f| f[1]}
-                               .map { |x| x.first}
 
         used, kicker = getFirstAndSecond card_frequencies
         {used: used, kicker: kicker}
