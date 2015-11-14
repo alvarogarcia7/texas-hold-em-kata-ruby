@@ -581,3 +581,47 @@ Hand.from('4c 4d')
 [1,2].sort_by { |x| x }
 [1,2,0].sort_by { |x| x }
 [1,2,0].sort_by { |x| -x }
+[1,2,0].sort_by { |x| return 0 if x.even?; 1 }
+[1,2,0].sort_by { |x| if x.even? 0 else 1 }
+[1,2,0].sort_by { |x| if x.even? 0 else 1 end }
+[1,2,0].sort_by { |x| if x.even? 0; else 1; end }
+[1,2,0].sort_by { |x| if x.even? then 0; else 1; end }
+[90, 1,2,0].sort_by { |x| if x.even? then 0; else 1; end }
+[90, 1,2,0].sort_by{|x| x}.sort_by { |x| if x.even? then 0; else 1; end }
+[90, 1,2,0].sort_by{|x| x}.sort_by { |x| if x.even? then -x; else x; end }
+[90, 1,2,0].sort_by { |x| if x.even? then -x; else x; end }
+[90, 1,2,0].sort_by { |x| if x.even? then x; else -x; end }
+[90,1,2,0].map {|x| [x, 2*x]}.sort_by {|x| x[1]}.map {|x| x[0]}
+[90,1,2,0].map {|x| [x, -2*x]}.sort_by {|x| x[1]}.map {|x| x[0]}
+[90,1,2,0].map {|x| [x, -x]}.sort_by {|x| x[1]}.map {|x| x[0]}
+[0,-2,90,1,2,0].map {|x| [x, -x]}.sort_by {|x| x[1]}.map {|x| x[0]}
+[0,-2,90,1,2,0].sort_by {|x| -x}
+[0, -2, 90, 1, 2, 0].map { |x| [x, -x] }.sort_by { |x| x[1] }
+[1,2,3].map {|x| {original: x, is-even: x.even?} }
+[1,2,3].map {|x| {original: x, is-even: x.even? } }
+[1,2,3].map {|x| {:original => x, :is-even => x.even? } }
+x.even?
+1.even?
+[1,2,3].map {|x| return {:original => x, :is-even => x.even? } }
+[1,2,3].map {|x| {:original => x, :is-even => x } }
+[1,2,3].map {|x| {:original => x, :iseven => x } }
+[1,2,3].map {|x| {:original => x, :iseven => x.even? } }
+[1,2,3].map {|x| {:original => x, :is_even => x.even? } }
+[1,2,3].map {|x| {:original => x, :is_even? => x.even? } }
+[1,2,3].map {|x| {:original => x, :even? => x.even? } }
+[1,2,3].map {|x| {:element => x, :even? => x.even? } }
+[1,2,3].map {|x| [x, x.even?] }
+[1,2,3].map {|x| {:element => x, :even? => x.even? } }.map {|x| x[:successor] = x[:element].succ}
+[1,2,3].map {|x| {:element => x, :even? => x.even? } }.map {|x| x[:successor] = x[:element].succ; x}
+[1,2,3].map {|x| [x, x.even?]}.select {|x| x[1]}.select {|x| x.first}
+[1,2,3].map {|x| [x, x.even?]}.select {|x| x[1]}.map {|x| x.first}
+class Array
+  def select_attribute attr
+    self.map { |unit| unit[attr] }
+  end
+end
+[1,2,3].map {|x| {:element => x, :even? => x.even? } }
+[1,2,3].map {|x| {:element => x, :even? => x.even? } }.select_attribute :even?
+[{:element=>1, :even?=>false}, {:element=>2, :even?=>true}, {:element=>3, :even?=>false}].select_attribute :even?
+[{:element => 1, :even? => false}, {:element=>2, :even?=>true}, {:element=>3, :even?=>false}].select_attribute :even?
+[{:element => 1, :even? => false}, {:element=>2, :even? => true}, {:element=>3, :even? => false}].select_attribute :even?
