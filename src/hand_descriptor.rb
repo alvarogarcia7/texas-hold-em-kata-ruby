@@ -52,11 +52,9 @@ class HandDescriptor
   end
 
   def mark_most_valuable! hands
-    hands.each { |hand|
-     if most_valuable_rule? hand
-       hand[:winner] = true
-     end
-    }
+    hands
+      .select { |hand| most_valuable_rule? hand }
+      .each   { |hand| hand[:winner] = true }
   end
 
   def mark_winner! hands
