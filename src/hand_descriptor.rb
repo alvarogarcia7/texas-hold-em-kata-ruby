@@ -61,10 +61,6 @@ class HandDescriptor
     winners = Winners.from(hands).mark
   end
 
-  def find_winners hands
-    hands.select {|hand| hand[:winner]}
-  end
-
   def obtain_description hand, index
     rule = @rules[index]
     hand_value = @rule_value[index]
