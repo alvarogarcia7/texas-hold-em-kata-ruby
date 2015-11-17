@@ -58,14 +58,7 @@ class HandDescriptor
   end
 
   def mark_winner! hands
-    winners = find_winners hands
-    if one? winners
-      winners.first[:description] += ' (winner)'
-    end
-  end
-
-  def one? hands
-    hands.size == 1
+    winners = Winners.from(hands).mark
   end
 
   def find_winners hands
@@ -107,5 +100,28 @@ class HandDescriptor
   def apply_next(rule)
     @hands.map { |hand| (hand.apply rule) }
           .select_attribute :used
+  end
+end
+
+class Winners
+  def self.from hands
+    new(hands.select {|hand| hand[:winner]})
+  end
+
+  def mark
+    if one?
+      @the_winners.first[:description] += ' (winner)'
+    end
+    @the_winners
+  end
+
+  private
+
+  def one?
+    @the_winners.size == 1
+  end
+
+  def initialize winners
+    @the_winners = winners
   end
 end
