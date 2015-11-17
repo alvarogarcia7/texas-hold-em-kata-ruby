@@ -80,11 +80,11 @@ class HandDescriptor
     @rules_that_apply = @hands
       .map { |hand|
                     rules.map { |rule|
-                                        [hand.apply(rule), rule]
+                                        {:applies => hand.apply(rule), :rule => rule}
                               }
-                         .select { |x| not x.first[:used].empty? }.reverse
+                         .select { |x| not x[:applies][:used].empty? }.reverse
       }.map { |x| x.last }
-       .map { |x| x.last }
+       .map { |x| x[:rule] }
   end  
 
   def method_name(rule, exceptions)
